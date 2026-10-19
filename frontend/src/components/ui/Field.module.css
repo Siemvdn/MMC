@@ -1,0 +1,79 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  /* Anders mag een veld in een grid breder worden dan zijn kolom. */
+  min-width: 0;
+}
+
+.label {
+  color: var(--color-text-subtle);
+  font-size: var(--font-size-caption);
+}
+
+.input {
+  width: 100%;
+  min-height: 36px;
+  padding: 6px 14px;
+  border: 1px solid var(--color-input-border);
+  border-radius: var(--radius-control);
+  background: var(--color-input-bg);
+  color: var(--color-text-primary);
+  caret-color: var(--color-caret);
+  font: inherit;
+  font-size: var(--font-size-ui);
+}
+
+.input:hover {
+  border-color: var(--color-input-border-hover);
+}
+
+.input:focus-visible {
+  border-color: var(--color-input-border-focus);
+  outline-offset: 0;
+}
+
+/*
+ * Safari op iOS geeft een datumveld een eigen, vaste breedte en hoogte die
+ * `width: 100%` negeert — het steekt dan net buiten de kolom uit. Zonder de
+ * standaardopmaak volgt het dezelfde maten als de andere velden.
+ */
+.input[type='date'] {
+  -webkit-appearance: none;
+  appearance: none;
+  min-width: 0;
+}
+
+.input[type='date']::-webkit-date-and-time-value {
+  text-align: left;
+}
+
+/* Een meerregelig veld is geen pil; de ronding blijft wel groot. */
+.textarea {
+  min-height: 96px;
+  border-radius: var(--radius-md);
+  line-height: var(--line-height-body);
+}
+
+.fieldError {
+  border-color: var(--color-error-border);
+}
+
+.errorText {
+  color: var(--color-error-text);
+  font-size: var(--font-size-caption);
+}
+
+/* De tekenteller naast het label. */
+.counter {
+  float: right;
+  color: var(--color-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.counterOver {
+  float: right;
+  color: var(--color-error-text);
+  font-weight: var(--font-weight-medium);
+  font-variant-numeric: tabular-nums;
+}

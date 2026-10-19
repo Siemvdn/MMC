@@ -1,0 +1,125 @@
+.carousel {
+  position: relative;
+}
+
+/*
+ * Een vast beeldvlak in plaats van de hoogte van Figure (die meebeweegt met
+ * de eigen verhouding van de foto): tijdens het wisselen liggen twee foto's
+ * met mogelijk een andere verhouding tegelijk over elkaar, en dat kan alleen
+ * netjes binnen een vaste doos. 4:5 is de staande verhouding die Figure ook
+ * als bovengrens hanteert (`max-height: 125cqw`), dus foto's die daar al aan
+ * voldeden ogen hier niet anders.
+ */
+.stage {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  border-radius: var(--radius-lg);
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/*
+ * Vier varianten, één per combinatie van vertrekkend/aankomend en richting.
+ * `forwards` houdt de eindstand vast: zonder dat zou de weggeschoven foto na
+ * de animatie terugspringen naar het midden, nog altijd zichtbaar tot React
+ * hem weghaalt.
+ */
+.slideOutLeft {
+  animation: carousel-out-left 450ms ease forwards;
+}
+
+.slideOutRight {
+  animation: carousel-out-right 450ms ease forwards;
+}
+
+.slideInFromRight {
+  animation: carousel-in-from-right 450ms ease forwards;
+}
+
+.slideInFromLeft {
+  animation: carousel-in-from-left 450ms ease forwards;
+}
+
+@keyframes carousel-out-left {
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes carousel-out-right {
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes carousel-in-from-right {
+  from {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes carousel-in-from-left {
+  from {
+    transform: translateX(-100%);
+  }
+}
+
+/*
+ * Onder de foto in plaats van eroverheen: een balk boven op de foto oogt al
+ * snel als een watermerk, en verliest op een donkere foto zijn contrast
+ * precies waar het om gaat.
+ */
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  margin-top: var(--space-3);
+}
+
+.arrow {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-pill);
+  background: var(--color-card-bg);
+  box-shadow: var(--shadow-sm);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-body);
+  line-height: 1;
+  cursor: pointer;
+}
+
+.arrow:hover {
+  background: var(--color-action-secondary-hover);
+}
+
+.dots {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.dot {
+  width: 9px;
+  height: 9px;
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-pill);
+  background: var(--color-indicator);
+  cursor: pointer;
+}
+
+.dotActive {
+  background: var(--color-indicator-active);
+}

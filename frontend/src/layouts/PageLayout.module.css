@@ -1,0 +1,45 @@
+/*
+ * Zorgt dat de footer onderaan blijft, ook als een pagina weinig inhoud heeft
+ * — bijvoorbeeld tijdens het laden of bij een fout.
+ */
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main {
+  flex: 1;
+}
+
+/*
+ * <main> laat de breedte los.
+ *
+ * De begrenzing zit nu per sectie, in het Container-component. Dat moet ook:
+ * een sectie met een eigen getinte achtergrond hoort van schermrand tot
+ * schermrand te lopen, terwijl de tekst erin binnen de leesbreedte blijft.
+ * Eén begrenzing om de hele pagina maakt dat onmogelijk.
+ */
+
+/*
+ * Overslaan-naar-inhoud-link: onzichtbaar tot hij focus krijgt. Wie met het
+ * toetsenbord navigeert hoeft dan niet elke keer door de hele navigatie heen
+ * (CLAUDE.md §14).
+ */
+.skipLink {
+  position: absolute;
+  left: -9999px;
+  z-index: 10;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-md);
+  background: var(--color-action-bg);
+  color: var(--color-action-text);
+  font-size: var(--font-size-ui);
+  text-decoration: none;
+}
+
+.skipLink:focus {
+  left: var(--space-4);
+  top: var(--space-4);
+  color: var(--color-action-text);
+}

@@ -1,0 +1,140 @@
+.header {
+  border-bottom: none;
+}
+
+.inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4);
+  max-width: var(--layout-max-width);
+  margin: 0 auto;
+  padding: var(--space-6) var(--layout-gutter);
+}
+
+.brand {
+  margin-right: auto;
+  font-family: var(--font-heading);
+  font-size: 26px;
+  color: var(--color-text-primary);
+  text-decoration: none;
+}
+
+.brand:hover {
+  color: var(--color-text-primary);
+}
+
+.navigation {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.link {
+  color: var(--color-text-primary);
+  font-size: var(--font-size-body-sm);
+  font-weight: var(--font-weight-medium);
+  text-decoration: none;
+}
+
+.link:hover,
+.link[aria-current='page'] {
+  color: var(--color-link);
+}
+
+/*
+ * Op een breed scherm is de knop overbodig en staat het menu gewoon
+ * uitgeklapt: `display: contents` haalt deze wrapper uit de layout weg, zodat
+ * de navigatie en de knop rechtstreeks meedoen in de flex-rij van `.inner` —
+ * precies zoals vóór het hamburgermenu.
+ */
+.menuToggle {
+  display: none;
+}
+
+.menu {
+  display: contents;
+}
+
+@media (max-width: 640px) {
+  .menuToggle {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-3);
+    border: none;
+    border-radius: var(--radius-control);
+    background: transparent;
+    color: var(--color-text-primary);
+    font-family: var(--font-body);
+    font-size: var(--font-size-ui);
+    font-weight: var(--font-weight-medium);
+    cursor: pointer;
+  }
+
+  .menuToggle:hover {
+    background: var(--color-action-secondary-hover);
+  }
+
+  /* Drie streepjes: het middelste is het element zelf, de andere twee zijn pseudo-elementen erboven en eronder. */
+  .menuIcon,
+  .menuIcon::before,
+  .menuIcon::after {
+    display: block;
+    width: 20px;
+    height: 2px;
+    border-radius: var(--radius-pill);
+    background: currentColor;
+  }
+
+  .menuIcon {
+    position: relative;
+  }
+
+  .menuIcon::before,
+  .menuIcon::after {
+    content: '';
+    position: absolute;
+    left: 0;
+  }
+
+  .menuIcon::before {
+    top: -6px;
+  }
+
+  .menuIcon::after {
+    top: 6px;
+  }
+
+  .inner {
+    padding: var(--space-4) var(--layout-gutter-mobile);
+  }
+
+  .brand {
+    font-size: var(--font-size-h4);
+  }
+
+  /*
+   * Dicht: helemaal weg, niet alleen onzichtbaar — anders blijven de
+   * navigatielinks met Tab bereikbaar terwijl je ze niet kunt zien.
+   */
+  .menu {
+    display: none;
+    flex-basis: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-4);
+    padding-top: var(--space-2);
+  }
+
+  .menuOpen {
+    display: flex;
+  }
+
+  .navigation {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
+}

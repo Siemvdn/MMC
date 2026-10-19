@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  PHPUnit-configuratie.
+
+  Draaien met: php tools/phpunit.phar
+
+  `failOnWarning` en `failOnRisky` staan aan omdat een waarschuwing hier
+  meestal betekent dat een test niets controleert of iets doet wat hij niet
+  hoort te doen. Zo'n test geeft valse zekerheid, en dat is erger dan geen
+  test (CLAUDE.md §16).
+-->
+<phpunit bootstrap="tests/bootstrap.php"
+         colors="true"
+         failOnWarning="true"
+         failOnRisky="true"
+         failOnNotice="true"
+         beStrictAboutOutputDuringTests="true"
+         cacheDirectory=".phpunit.cache">
+    <testsuites>
+        <testsuite name="App">
+            <directory>tests</directory>
+        </testsuite>
+    </testsuites>
+
+    <source>
+        <include>
+            <directory>src</directory>
+        </include>
+    </source>
+</phpunit>

@@ -1,0 +1,419 @@
+.layout {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  min-height: 100vh;
+  background: var(--color-page-bg);
+}
+
+/* ── Zijbalk ──────────────────────────────────────────────────────────── */
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-6) var(--space-4);
+  background: var(--color-section-bg);
+}
+
+.brand {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-h4);
+  color: var(--color-text-primary);
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.menuButton {
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid transparent;
+  border-radius: var(--radius-control);
+  background: transparent;
+  color: var(--color-text-prose);
+  font: inherit;
+  font-size: var(--font-size-ui);
+  text-align: left;
+  cursor: pointer;
+}
+
+.menuButton:hover {
+  background: var(--color-action-secondary-hover);
+}
+
+.menuButtonManual {
+  margin-top: var(--space-4);
+}
+
+.menuButtonActive {
+  background: var(--color-action-bg);
+  color: var(--color-action-text);
+}
+
+.menuButtonActive:hover {
+  background: var(--color-action-bg-hover);
+}
+
+.sidebarFooter {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-top: auto;
+  color: var(--color-text-subtle);
+  font-size: var(--font-size-meta);
+}
+
+/* ── Werkgebied ───────────────────────────────────────────────────────── */
+
+.content {
+  padding: var(--space-8);
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  max-width: 760px;
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.title {
+  margin: 0;
+  font-size: var(--font-size-h3);
+}
+
+.saved {
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  background: var(--color-success-bg);
+  color: var(--color-success-text);
+  font-size: var(--font-size-micro);
+}
+
+/* ── Meldingen ────────────────────────────────────────────────────────── */
+
+.notice {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-meta);
+  line-height: var(--line-height-ui);
+}
+
+.noticeError {
+  background: var(--color-error-bg);
+  color: var(--color-error-bg-text);
+}
+
+.noticeTodo {
+  background: var(--color-badge-bg);
+  color: var(--color-badge-text);
+}
+
+.errorList {
+  margin: var(--space-2) 0 0;
+  padding-left: var(--space-6);
+}
+
+/* ── Secties ──────────────────────────────────────────────────────────── */
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-6);
+  border-radius: var(--radius-card);
+  background: var(--color-card-bg);
+  box-shadow: var(--shadow-sm);
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.sectionType {
+  color: var(--color-text-primary);
+  font-size: var(--font-size-meta);
+  font-weight: var(--font-weight-bold);
+}
+
+.sectionTools {
+  display: flex;
+  gap: var(--space-1);
+}
+
+.toolButton {
+  min-width: 32px;
+  padding: 4px 10px;
+  border: 1px solid var(--color-divider);
+  border-radius: var(--radius-control);
+  background: transparent;
+  color: var(--color-text-prose);
+  font: inherit;
+  font-size: var(--font-size-caption);
+  cursor: pointer;
+}
+
+.toolButton:hover:not(:disabled) {
+  background: var(--color-action-secondary-hover);
+}
+
+.toolButton:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  border: 1px solid var(--color-divider);
+  border-radius: var(--radius-md);
+}
+
+.itemHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  color: var(--color-text-subtle);
+  font-size: var(--font-size-caption);
+}
+
+.imageInfo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  background: var(--color-badge-bg);
+  color: var(--color-badge-text);
+  font-size: var(--font-size-caption);
+}
+
+/* ── Onderbalk ────────────────────────────────────────────────────────── */
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  padding-top: var(--space-2);
+}
+
+.addRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-4) var(--space-6);
+  border: 2px dashed var(--color-border-strong);
+  border-radius: var(--radius-lg);
+  color: var(--color-text-subtle);
+  font-size: var(--font-size-ui);
+}
+
+.select {
+  min-height: 36px;
+  padding: 6px 14px;
+  border: 1px solid var(--color-input-border);
+  border-radius: var(--radius-control);
+  background: var(--color-input-bg);
+  color: var(--color-text-primary);
+  font: inherit;
+  font-size: var(--font-size-ui);
+}
+
+@media (max-width: 760px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .content {
+    padding: var(--space-6) var(--layout-gutter-mobile);
+  }
+}
+
+/* ── Afbeelding bij een sectie ────────────────────────────────────────── */
+
+.imageBlock {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  border: 1px solid var(--color-divider);
+  border-radius: var(--radius-md);
+}
+
+.imagePreview {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.thumbnail {
+  width: 96px;
+  height: 72px;
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+}
+
+.imagePath {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-caption);
+  word-break: break-all;
+}
+
+.imageActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/*
+ * Het bestandsveld zelf is niet te stylen, dus het label doet dienst als knop.
+ * Het veld blijft in de DOM staan en is via het label bereikbaar met muis én
+ * toetsenbord — het is dus niet verborgen voor hulpsoftware.
+ */
+.fileButton {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 14px;
+  border: 1px solid var(--color-divider);
+  border-radius: var(--radius-control);
+  color: var(--color-text-prose);
+  font-size: var(--font-size-caption);
+  cursor: pointer;
+}
+
+.fileButton:hover {
+  background: var(--color-action-secondary-hover);
+}
+
+.fileInput {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Zichtbare focus wanneer het verborgen veld focus krijgt (§14). */
+.fileInput:focus-visible + .fileButton,
+.fileButton:has(+ .fileInput:focus-visible) {
+  outline: var(--focus-ring-width) solid var(--color-focus-ring);
+  outline-offset: var(--focus-ring-offset);
+}
+
+/* ── Werkruimte: bewerken naast voorbeeld ─────────────────────────────── */
+
+.workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--space-6);
+  align-items: start;
+  padding: var(--space-8);
+}
+
+.workspaceSolo {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.editorColumn {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-width: 0;
+  max-width: 760px;
+}
+
+.previewColumn {
+  position: sticky;
+  top: var(--space-8);
+  min-width: 0;
+}
+
+/* Het blok dat in het voorbeeld is aangewezen. */
+.sectionActive {
+  outline: 2px solid var(--color-highlight);
+  outline-offset: 3px;
+}
+
+.viewSwitch {
+  display: flex;
+  gap: var(--space-1);
+}
+
+@media (max-width: 1100px) {
+  .workspace {
+    grid-template-columns: minmax(0, 1fr);
+    padding: var(--space-6) var(--layout-gutter-mobile);
+  }
+
+  .previewColumn {
+    position: static;
+  }
+}
+
+/*
+ * Tabbladen, alleen op smalle schermen. Daar passen twee panelen niet naast
+ * elkaar zonder dat beide onbruikbaar smal worden.
+ */
+.tabs {
+  display: flex;
+  gap: var(--space-1);
+  grid-column: 1 / -1;
+  margin-bottom: var(--space-2);
+}
+
+.tab {
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--color-divider);
+  border-radius: var(--radius-control);
+  background: transparent;
+  color: var(--color-text-prose);
+  font: inherit;
+  font-size: var(--font-size-ui);
+  cursor: pointer;
+}
+
+.tabActive {
+  background: var(--color-action-bg);
+  border-color: var(--color-action-bg);
+  color: var(--color-action-text);
+}
+
+/* Handleiding afdrukken: alleen de tekst, zonder zijbalk. */
+@media print {
+  .layout {
+    display: block;
+  }
+
+  .sidebar {
+    display: none;
+  }
+}

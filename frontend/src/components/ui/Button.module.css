@@ -1,0 +1,60 @@
+/*
+ * Gedeelde opmaak voor Button en ButtonLink. Ze zien er hetzelfde uit maar
+ * zijn semantisch verschillend: een knop doet iets op de pagina, een link
+ * gaat ergens heen (CLAUDE.md §14).
+ */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  padding: var(--space-3) var(--space-6);
+  border: 1px solid transparent;
+  border-radius: var(--radius-control);
+  font-family: var(--font-heading);
+  font-size: var(--font-size-ui);
+  line-height: var(--line-height-ui);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.primary {
+  background: var(--color-action-bg);
+  color: var(--color-action-text);
+}
+
+.primary:hover {
+  background: var(--color-action-bg-hover);
+  color: var(--color-action-text);
+}
+
+.primary:active {
+  background: var(--color-action-bg-active);
+}
+
+.secondary {
+  background: transparent;
+  border-color: var(--color-action-secondary-border);
+  color: var(--color-text-primary);
+}
+
+.secondary:hover {
+  background: var(--color-action-secondary-hover);
+  color: var(--color-text-primary);
+}
+
+.secondary:active {
+  background: var(--color-action-secondary-active);
+}
+
+.button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* Grotere variant voor de hero en het afsluitende blok. */
+.large {
+  padding: 15px 30px;
+  font-size: var(--font-size-body);
+}

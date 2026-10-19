@@ -1,0 +1,25 @@
+# Meubelmakers Collectief Zeist
+
+> [TODO: één of twee zinnen over wie het collectief is en wat het doet — alleen bevestigde feiten uit CLAUDE.md §2. Alles in dit bestand wordt letterlijk door AI-systemen overgenomen.]
+
+## Diensten
+
+- [TODO: dienst]
+
+## Achtergrond
+
+- [TODO: achtergrond]
+
+## Pagina's
+
+- [Home](https://[TODO-domein]/): [TODO: wat er op deze pagina staat]
+- [Over ons](https://[TODO-domein]/over-ons): [TODO: wat er op deze pagina staat]
+- [Contact](https://[TODO-domein]/contact): contactformulier.
+- [Privacyverklaring](https://[TODO-domein]/privacyverklaring): hoe er met gegevens uit het contactformulier wordt omgegaan.
+- [Algemene voorwaarden](https://[TODO-domein]/algemene-voorwaarden): [TODO: wat er op deze pagina staat]
+
+## Contact
+
+- E-mail: [TODO: e-mailadres, gelijk aan site.json]
+- Telefoon: [TODO: telefoonnummer, gelijk aan site.json]
+- Werkgebied: [TODO: werkgebied, gelijk aan site.json]

@@ -1,0 +1,34 @@
+{
+    "_todo": [
+        "De contactgegevens staan niet hier maar in site.json: ze komen ook in de footer op élke pagina terug, en één plek voorkomt dat ze uit elkaar gaan lopen (CLAUDE.md §12, NAP-consistentie).",
+        "Het contactformulier staat tussen de eerste sectie en de rest, en is niet via het beheer aan te passen (frontend/src/components/features/PublicPageBody.tsx).",
+        "[TODO: meta.title en meta.description — uniek per pagina (CLAUDE.md §12).]"
+    ],
+    "meta": {
+        "title": "[TODO: paginatitel contact]",
+        "description": "[TODO: meta description contact]"
+    },
+    "sections": [
+        {
+            "type": "hero",
+            "background": "light",
+            "kicker": "[TODO: bovenkop]",
+            "heading": "[TODO: kop van de contactpagina]",
+            "text": "[TODO: inleidende tekst boven het formulier]",
+            "image": null,
+            "imageAlt": "",
+            "layout": "beside",
+            "textColor": "dark",
+            "actions": []
+        },
+        {
+            "type": "prose",
+            "background": "tinted",
+            "heading": "[TODO: kop onder het formulier]",
+            "text": "[TODO: tekst onder het formulier]",
+            "image": null,
+            "imageAlt": "",
+            "imagePosition": "right"
+        }
+    ]
+}

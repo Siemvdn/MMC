@@ -1,0 +1,120 @@
+/*
+ * Grote, rustige tekst: de lezer is geen vaste computergebruiker. Daarom 18px
+ * als basis, ruime regelafstand en weinig verschillende stijlen.
+ */
+.handleiding {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  max-width: 760px;
+  color: var(--color-text-prose);
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.handleiding h1 {
+  margin: 0;
+  font-size: var(--font-size-h2);
+}
+
+.handleiding h2 {
+  margin: 0 0 var(--space-3);
+  font-size: var(--font-size-h3);
+}
+
+.handleiding h3 {
+  margin: var(--space-5) 0 var(--space-2);
+  font-size: var(--font-size-h4);
+}
+
+.handleiding p,
+.handleiding ul,
+.handleiding ol {
+  margin: 0 0 var(--space-3);
+}
+
+.handleiding ul,
+.handleiding ol {
+  padding-left: var(--space-6);
+}
+
+.handleiding li {
+  margin-bottom: var(--space-2);
+}
+
+.intro {
+  font-size: 20px;
+}
+
+.contents {
+  padding: var(--space-4) var(--space-6);
+  border-radius: var(--radius-card);
+  background: var(--color-card-bg);
+}
+
+.contents a {
+  color: var(--color-link);
+}
+
+.section {
+  scroll-margin-top: var(--space-6);
+}
+
+.tip,
+.warning {
+  margin: 0 0 var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  font-size: 17px;
+}
+
+.tip {
+  background: var(--color-success-bg);
+  color: var(--color-success-text);
+}
+
+.warning {
+  background: var(--color-error-bg);
+  color: var(--color-error-bg-text);
+}
+
+.table {
+  width: 100%;
+  margin-bottom: var(--space-3);
+  border-collapse: collapse;
+  font-size: 17px;
+}
+
+.table th,
+.table td {
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid var(--color-divider);
+  text-align: left;
+  vertical-align: top;
+}
+
+.table th {
+  font-weight: var(--font-weight-medium);
+}
+
+.print {
+  align-self: flex-start;
+}
+
+/* Op papier of in een PDF: geen knoppen, en tabellen en tips niet doormidden. */
+@media print {
+  .print {
+    display: none;
+  }
+
+  .handleiding {
+    max-width: none;
+  }
+
+  .section,
+  .tip,
+  .warning,
+  .table tr {
+    break-inside: avoid;
+  }
+}

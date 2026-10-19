@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  De drie pagina's uit §1, plus de privacyverklaring (§15) en de
+  algemene voorwaarden. Het admin-gedeelte en het voorbeeldvenster staan er
+  bewust niet in.
+
+  [TODO: domein] — gelijk aan SITE_ORIGIN in src/constants/site.ts.
+  [TODO: lastmod] — de datum van livegang, en daarna bijwerken bij een
+  inhoudelijke wijziging aan een pagina. Na livegang dit bestand indienen in
+  Google Search Console (§12, §21).
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://[TODO-domein]/</loc>
+    <lastmod>[TODO-datum]</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://[TODO-domein]/over-ons</loc>
+    <lastmod>[TODO-datum]</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://[TODO-domein]/contact</loc>
+    <lastmod>[TODO-datum]</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://[TODO-domein]/privacyverklaring</loc>
+    <lastmod>[TODO-datum]</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://[TODO-domein]/algemene-voorwaarden</loc>
+    <lastmod>[TODO-datum]</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+</urlset>

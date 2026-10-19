@@ -1,0 +1,19 @@
+/*
+ * De leesbreedte van de site.
+ *
+ * Zat eerst in PageLayout, om de hele <main> heen. Dat werkte zolang alles op
+ * dezelfde achtergrond stond, maar een sectie met een eigen getinte band moet
+ * juist bréder zijn dan de tekst — van schermrand tot schermrand. Daarom
+ * begrenst nu elke sectie zijn eigen inhoud, en niet de pagina als geheel.
+ */
+.container {
+  max-width: var(--layout-max-width);
+  margin-inline: auto;
+  padding-inline: var(--layout-gutter);
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding-inline: var(--layout-gutter-mobile);
+  }
+}

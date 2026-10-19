@@ -1,0 +1,34 @@
+# In deze map komen door de klant geüploade afbeeldingen te staan.
+#
+# Een uploadmap is het klassieke doelwit: lukt het iemand een .php-bestand
+# tussen de foto's te krijgen, dan is een enkele aanroep genoeg om code op de
+# server te draaien. De uploadcontrole zelf (CLAUDE.md §11: whitelist op type,
+# inhoud verifiëren met getimagesize(), nieuwe bestandsnaam genereren) komt bij
+# het admin-gedeelte. Dit bestand is de tweede verdedigingslinie: ook áls er
+# iets uitvoerbaars binnenkomt, draait het hier niet.
+
+# 1. Weiger elk verzoek naar een uitvoerbaar bestandstype.
+<FilesMatch "\.(php|phtml|phps|phar|cgi|pl|py|sh|htaccess)$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+# 2. Haal de koppeling tussen extensie en PHP-verwerker weg, zodat de server
+#    zo'n bestand als gewone tekst behandelt in plaats van als script.
+<IfModule mod_mime.c>
+    RemoveHandler .php .phtml .phps .phar
+    RemoveType .php .phtml .phps .phar
+</IfModule>
+
+# 3. Zet de PHP-engine hier helemaal uit, waar dat kan.
+<IfModule mod_php.c>
+    php_flag engine off
+</IfModule>
+
+# Geen mapinhoud tonen: de lijst met bestandsnamen gaat niemand aan.
+Options -Indexes

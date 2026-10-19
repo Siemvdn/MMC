@@ -1,0 +1,22 @@
+{
+    "_todo": [
+        "[TODO: algemene voorwaarden van de klant. Blijkt de pagina niet nodig, dan gaat hij in één keer weg: ROUTES, ContentFile, de HTML-ingang en de footerlink.]",
+        "Deze pagina staat niet in de hoofdnavigatie, alleen in de footer van elke pagina.",
+        "[TODO: meta.title en meta.description — uniek per pagina (CLAUDE.md §12).]"
+    ],
+    "meta": {
+        "title": "[TODO: paginatitel algemene voorwaarden]",
+        "description": "[TODO: meta description algemene voorwaarden]"
+    },
+    "sections": [
+        {
+            "type": "prose",
+            "background": "light",
+            "heading": "Algemene voorwaarden",
+            "text": "[TODO: tekst van de algemene voorwaarden]",
+            "image": null,
+            "imageAlt": "",
+            "imagePosition": "right"
+        }
+    ]
+}

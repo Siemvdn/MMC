@@ -1,0 +1,210 @@
+/*
+ * Design tokens — het enige bestand waar het uiterlijk van de site vastligt.
+ *
+ * Dit is een bewust neutrale basis: grijstinten en het systeemfont, zonder
+ * merk. Het echte design komt later in één keer hierin, door de waarden te
+ * vervangen. Componenten gebruiken uitsluitend de namen hieronder; losse
+ * hex-codes, fonts of schaduwen horen in geen enkele .module.css thuis
+ * (CLAUDE.md §4).
+ *
+ * Twee lagen:
+ *   1. Primitieven  — de ruwe grijsschaal. Alleen binnen dit bestand
+ *                     gebruiken; ze zeggen niets over betekenis.
+ *   2. Semantisch   — benoemd naar hun ROL op de pagina. Dit is wat
+ *                     componenten gebruiken, zodat een nieuw design de rollen
+ *                     opnieuw invult zonder één component aan te raken.
+ *
+ * Contrast (CLAUDE.md §14, WCAG AA: 4,5:1 voor gewone tekst, 3:1 voor grote
+ * tekst en interface-elementen) staat bij de teksttokens, berekend tegen
+ * --color-page-bg (wit). Controleer dit opnieuw bij elk nieuw palet.
+ */
+
+:root {
+  /* ── 1. Primitieven: grijsschaal ────────────────────────────────────── */
+  --grey-0: #ffffff;
+  --grey-50: #f7f7f7;
+  --grey-100: #efefef;
+  --grey-200: #e2e2e2;
+  --grey-300: #cfcfcf;
+  --grey-400: #b0b0b0;
+  --grey-500: #8c8c8c;
+  --grey-600: #6b6b6b;
+  --grey-700: #4f4f4f;
+  --grey-800: #333333;
+  --grey-900: #1a1a1a;
+
+  /*
+   * De enige kleuren in deze basis zijn de statuskleuren. Die hebben een
+   * functie en geen merk: een foutmelding moet als fout herkenbaar zijn, ook
+   * voordat er een design is. De tekst erbij zegt altijd óók wat er mis is,
+   * dus kleur is nooit de enige drager (§14).
+   */
+  --red-100: #fdecee;
+  --red-700: #b00020; /* 7,3:1 op wit */
+  --red-800: #8a0019;
+  --green-100: #e8f3ea;
+  --green-800: #1e5b2a; /* 7,2:1 op --green-100 */
+
+  /* ── 2. Semantisch: vlakken ─────────────────────────────────────────── */
+  --color-page-bg: var(--grey-0);
+  /* Het getinte vlak van een sectie met `background: tinted`. */
+  --color-section-bg: var(--grey-100);
+  --color-card-bg: var(--grey-50);
+  /* Achtergrond rond het voorbeeldvenster in het beheer. */
+  --color-surface-muted: var(--grey-300);
+  --color-divider: var(--grey-300);
+  --color-border-strong: var(--grey-500);
+
+  /* ── 2. Semantisch: tekst ───────────────────────────────────────────── */
+  --color-text-primary: var(--grey-900); /* 17,4:1 */
+  --color-text-prose: var(--grey-800); /* 12,6:1 */
+  --color-text-subtle: var(--grey-700); /*  8,1:1 */
+  --color-text-muted: var(--grey-600); /*  5,3:1; 4,7:1 op --color-section-bg */
+  /* Tekst op een donkere ondergrond (banner met lichte tekst). */
+  --color-text-on-dark: var(--grey-0);
+
+  /* ── 2. Semantisch: accenten en links ───────────────────────────────── */
+  --color-kicker: var(--grey-700);
+  --color-link: var(--grey-900);
+  --color-link-hover: var(--grey-700);
+  /* Omlijning van het blok dat in het beheer is aangewezen. */
+  --color-highlight: var(--grey-900);
+
+  /* ── 2. Semantisch: acties ──────────────────────────────────────────── */
+  --color-action-bg: var(--grey-900);
+  --color-action-text: var(--grey-0); /* 17,4:1 */
+  --color-action-bg-hover: var(--grey-800);
+  --color-action-bg-active: var(--grey-700);
+
+  --color-action-secondary-border: var(--grey-500);
+  --color-action-secondary-hover: color-mix(in srgb, var(--grey-900) 7%, transparent);
+  --color-action-secondary-active: color-mix(in srgb, var(--grey-900) 14%, transparent);
+
+  /* ── 2. Semantisch: omgekeerd paneel (het afsluitende CTA-blok) ─────── */
+  --color-panel-invert-bg: var(--grey-900);
+  --color-panel-invert-text: var(--grey-0);
+  --color-panel-invert-prose: var(--grey-200); /* 13,1:1 */
+
+  /* ── 2. Semantisch: genummerde stappen, tijdlijn en carrousel ───────── */
+  --color-step-bg: var(--grey-800);
+  --color-step-text: var(--grey-0); /* 12,6:1 */
+  --color-step-title: var(--grey-900);
+  --color-indicator: var(--grey-400);
+  --color-indicator-active: var(--grey-900);
+
+  /*
+   * De sluier achter tekst op een foto (hero als banner). Donker onder lichte
+   * tekst, licht onder donkere tekst.
+   */
+  --color-scrim-dark: var(--grey-900);
+  --color-scrim-light: var(--grey-0);
+
+  /* ── 2. Semantisch: status ──────────────────────────────────────────── */
+  --color-error-text: var(--red-700);
+  --color-error-border: var(--red-700);
+  --color-error-bg: var(--red-100);
+  --color-error-bg-text: var(--red-800);
+  --color-success-bg: var(--green-100);
+  --color-success-text: var(--green-800);
+  /* Neutrale meldingen en labels in het beheer. */
+  --color-badge-bg: var(--grey-200);
+  --color-badge-text: var(--grey-800);
+
+  /* ── 2. Semantisch: formulieren ─────────────────────────────────────── */
+  --color-input-bg: var(--grey-0);
+  --color-input-border: var(--grey-500);
+  --color-input-border-hover: var(--grey-700);
+  --color-input-border-focus: var(--grey-900);
+  --color-caret: var(--grey-900);
+
+  /* ── 2. Semantisch: focus en selectie ───────────────────────────────── */
+  --color-focus-ring: var(--grey-900);
+  --color-selection: var(--grey-300);
+
+  /* ── Typografie: families ───────────────────────────────────────────────
+     Het systeemfont: geen download, geen verbinding met een derde partij
+     (§12, §15). Komt er een webfont, host hem dan zelf en voeg de
+     @font-face-regels hier boven de tokens toe. */
+  --font-heading: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-body: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+  /* ── Typografie: gewichten ──────────────────────────────────────────── */
+  --font-weight-heading: 700;
+  --font-weight-body: 400;
+  --font-weight-medium: 600;
+  --font-weight-bold: 700;
+
+  /* ── Typografie: groottes, benoemd naar rol ─────────────────────────── */
+  --font-size-hero: 48px;
+  --font-size-hero-mobile: 32px;
+  --font-size-h1: 36px;
+  --font-size-h2: 30px;
+  --font-size-h2-panel: 28px;
+  --font-size-h3: 22px;
+  --font-size-h4: 18px;
+  --font-size-h5: 16px;
+
+  --font-size-body-lg: 18px;
+  --font-size-body: 16px;
+  --font-size-body-sm: 16px;
+  --font-size-ui: 15px;
+  --font-size-meta: 14px;
+  --font-size-caption: 13px;
+  --font-size-micro: 12px;
+
+  /* ── Typografie: regel- en letterafstand ────────────────────────────── */
+  --line-height-hero: 1.1;
+  --line-height-heading: 1.2;
+  --line-height-ui: 1.5;
+  --line-height-base: 1.5;
+  --line-height-body: 1.6;
+  --line-height-body-relaxed: 1.7;
+
+  --letter-spacing-heading: 0;
+  --letter-spacing-kicker: 0.08em;
+  --letter-spacing-label: 0.06em;
+
+  /* ── Ruimte ─────────────────────────────────────────────────────────── */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+
+  /* ── Layout ─────────────────────────────────────────────────────────── */
+  --layout-max-width: 1200px;
+  --layout-gutter: 32px;
+  --layout-gutter-mobile: var(--space-4);
+
+  --section-padding-y: 56px;
+  --section-padding-y-compact: 48px;
+  --panel-padding: 40px;
+
+  /* Breedte waarop lopende tekst prettig leest; `ch` schaalt mee met de
+     fontgrootte. */
+  --measure-lead: 56ch;
+  --measure-prose: 48ch;
+
+  /* ── Vorm ───────────────────────────────────────────────────────────── */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 6px;
+  --radius-card: 6px;
+  /* Knoppen, invoervelden, keuzeknoppen en tabbladen. */
+  --radius-control: 4px;
+  /* Wat altijd rond is: bolletjes, cijferschijven, ronde pijlknoppen. */
+  --radius-pill: 999px;
+
+  /* ── Elevatie ───────────────────────────────────────────────────────── */
+  --shadow-sm: 0 1px 2px color-mix(in srgb, var(--grey-900) 12%, transparent);
+  --shadow-md: 0 2px 8px color-mix(in srgb, var(--grey-900) 14%, transparent);
+  --shadow-lg: 0 8px 24px color-mix(in srgb, var(--grey-900) 18%, transparent);
+
+  /* ── Focus ──────────────────────────────────────────────────────────────
+     CLAUDE.md §14: focus moet altijd zichtbaar zijn. Deze twee tokens zijn
+     de enige bron voor de focusring. */
+  --focus-ring-width: 2px;
+  --focus-ring-offset: 2px;
+}

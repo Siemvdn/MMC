@@ -1,0 +1,134 @@
+/*
+ * Globale basisstijl.
+ *
+ * Bevat uitsluitend wat op elk element van de site geldt: de reset, de
+ * basistypografie en de interactiestatussen. Alles wat bij één component
+ * hoort staat bij dat component, niet hier — anders groeit dit bestand uit
+ * tot een tweede stylesheet naast de componenten (CLAUDE.md §4).
+ */
+
+@import './tokens.css';
+
+/* ── Reset ────────────────────────────────────────────────────────────── */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--color-page-bg);
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
+  font-size: var(--font-size-body-sm);
+  font-weight: var(--font-weight-body);
+  line-height: var(--line-height-base);
+  /* Voorkomt dat een lange, onbreekbare string (een e-mailadres in de
+     footer) de pagina horizontaal laat scrollen op mobiel. */
+  overflow-wrap: break-word;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+figure {
+  margin: 0;
+}
+
+/* ── Koppen ───────────────────────────────────────────────────────────────
+   De basisschaal. Secties die hiervan afwijken (de hero) zetten dat zelf,
+   met een token — niet met een los getal. */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0 0 var(--space-2);
+  font-family: var(--font-heading);
+  font-weight: var(--font-weight-heading);
+  line-height: var(--line-height-heading);
+  letter-spacing: var(--letter-spacing-heading);
+}
+
+h1 {
+  font-size: var(--font-size-h1);
+}
+
+h2 {
+  font-size: var(--font-size-h2);
+}
+
+h3 {
+  font-size: var(--font-size-h3);
+}
+
+h4 {
+  font-size: var(--font-size-h4);
+}
+
+h5 {
+  font-size: var(--font-size-h5);
+}
+
+h6 {
+  font-size: var(--font-size-micro);
+  letter-spacing: var(--letter-spacing-label);
+  text-transform: uppercase;
+}
+
+p {
+  margin: 0 0 var(--space-3);
+}
+
+/* ── Links ────────────────────────────────────────────────────────────── */
+
+a {
+  color: var(--color-link);
+  text-underline-offset: 3px;
+}
+
+a:hover {
+  color: var(--color-link-hover);
+}
+
+/* ── Interactiestatussen ──────────────────────────────────────────────────
+   CLAUDE.md §14: elk interactief element moet met het toetsenbord
+   bereikbaar zijn én een zichtbare focus hebben. `:focus-visible` toont de
+   ring alleen bij toetsenbordnavigatie, niet bij een muisklik. De
+   `:focus { outline: none }` hieronder mag daarom: er staat direct een
+   alternatief tegenover. */
+
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: var(--focus-ring-width) solid var(--color-focus-ring);
+  outline-offset: var(--focus-ring-offset);
+}
+
+::selection {
+  background: var(--color-selection);
+}
+
+/* ── Toegankelijkheid: bewegingsvoorkeur ──────────────────────────────────
+   Respecteert de systeeminstelling van bezoekers die last hebben van
+   beweging. Staat hier vast, zodat een animatie die later toegevoegd wordt
+   dit niet per ongeluk overslaat. */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

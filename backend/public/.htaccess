@@ -1,0 +1,52 @@
+# De enige publiek toegankelijke map van de backend.
+#
+# Dit bestand doet drie dingen: HTTPS afdwingen, alles naar de front
+# controller sturen, en de beveiligingsheaders zetten.
+
+# ── HTTPS afdwingen (CLAUDE.md §11) ──────────────────────────────────────
+#
+# De API stuurt content en straks ook een sessiecookie heen en weer; dat mag
+# niet onversleuteld. Werkt de site na de deploy niet meer, controleer dan
+# eerst of het SSL-certificaat in het paneel van de hosting actief is — zonder
+# certificaat stuurt deze regel bezoekers in een kringetje.
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    RewriteCond %{HTTPS} !=on
+    RewriteCond %{HTTP:X-Forwarded-Proto} !=https
+    RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+    # Front controller: alles wat geen bestaand bestand of bestaande map is,
+    # gaat naar index.php. Zo is er precies één ingang tot de applicatie.
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^ index.php [QSA,L]
+</IfModule>
+
+# ── Beveiligingsheaders ──────────────────────────────────────────────────
+#
+# Deze staan óók in PHP (src/Middleware/SecurityHeaders.php). Dat is geen
+# dubbel werk maar opzet: of mod_headers op het hostingpakket aanstaat weten
+# we niet, en een header die stilletjes ontbreekt merk je pas als iemand
+# ernaar zoekt.
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "DENY"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+    # Een JSON-antwoord hoort helemaal niets te laden.
+    Header always set Content-Security-Policy "default-src 'none'; frame-ancestors 'none'; base-uri 'none'; form-action 'none'"
+
+    # HSTS wordt in PHP gezet, en alleen over een versleutelde verbinding.
+    # Hier zou hij ook over HTTP meegestuurd worden, en dan zet je bezoekers
+    # vast op een domein waarvan nog niet vaststaat dat HTTPS er werkt.
+</IfModule>
+
+# ── Uploads ──────────────────────────────────────────────────────────────
+#
+# De bescherming van uploads/ staat in een eigen .htaccess in die map zelf.
+# Een <Directory>-blok mag hier niet: dat is een serverconfiguratie-directive
+# en levert in een .htaccess een 500 op.
+
+# Geen mapinhoud tonen als er geen indexbestand is (CLAUDE.md §11).
+Options -Indexes

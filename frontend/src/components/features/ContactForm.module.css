@@ -1,0 +1,44 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  max-width: 620px;
+  /* Geen ruimte erboven: het formulier hoort bij de titel erboven, en die
+     sectie heeft onderaan al zijn eigen witruimte. */
+  padding-block: 0 var(--section-padding-y-compact);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-4);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.note {
+  max-width: 34ch;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-caption);
+  line-height: var(--line-height-ui);
+}
+
+.feedback {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  color: var(--color-text-prose);
+  font-size: var(--font-size-meta);
+  line-height: var(--line-height-ui);
+}
+
+.feedbackError {
+  composes: feedback;
+  border-color: var(--color-error-border);
+  color: var(--color-error-text);
+}

@@ -1,0 +1,15 @@
+{
+    "_todo": [
+        "[TODO: telefoon, e-mail en werkgebied invullen, letterlijk gelijk aan het Google Business Profile (CLAUDE.md §12).] Leeg betekent hier 'nog niet aangeleverd': de footer toont dan een zichtbare plaatsvervanger en het LocalBusiness-schema wordt bij de build overgeslagen. Vul dus nooit een tijdelijke tekst in deze velden in — die zou als echt gegeven in het schema belanden.",
+        "[TODO: sameAs — links naar het Google Business Profile en eventuele social media, zodra die bestaan.]",
+        "[TODO: adres — is er een openbaar adres (bv. een werkplaats)? Het schema bevat nu bewust geen straatadres; zie frontend/src/utils/localBusinessSchema.ts.]",
+        "Het LocalBusiness-schema wordt bij het bouwen uit dit bestand gemaakt. Wijzig je hier naam, telefoon, e-mail of werkgebied, dan staat het schema pas goed na een nieuwe build en deploy, terwijl de voettekst direct meebeweegt."
+    ],
+    "businessName": "Meubelmakers Collectief Zeist",
+    "contact": {
+        "phone": "",
+        "email": "",
+        "area": ""
+    },
+    "sameAs": []
+}

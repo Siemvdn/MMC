@@ -1,0 +1,46 @@
+# Afhankelijkheden — worden opnieuw geïnstalleerd, horen niet in Git.
+node_modules/
+vendor/
+
+# Build-uitvoer.
+dist/
+build/
+*.tsbuildinfo
+
+# Geheimen. Nooit in Git, ook niet één keer "even snel" (CLAUDE.md §11, §20).
+# Wat er in .env hoort te staan, staat beschreven in backend/.env.example.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Runtime-bestanden van de backend. Deze ontstaan tijdens het draaien en
+# horen bij de server, niet bij de broncode.
+backend/storage/logs/*.log
+backend/storage/content/*.bak
+backend/storage/content/*.lock
+backend/storage/content/content-*
+
+# De contentbestanden zélf staan wél in Git: ze zijn de bron voor de teksten
+# op de site en je wilt kunnen zien wanneer er iets gewijzigd is. Let op dat
+# ze op de server door het CMS overschreven worden — een deploy mag ze dus
+# niet blind overschrijven zonder eerst te kijken wat er live staat.
+
+# Testgereedschap. PHPUnit wordt als PHAR gedraaid in plaats van via
+# Composer, zodat de backend geen vendor/-map nodig heeft. Het bestand is 5,5 MB
+# en hoort niet in Git; hoe je het ophaalt staat in backend/README.md.
+backend/tools/phpunit.phar
+backend/.phpunit.cache/
+
+# Editor en besturingssysteem.
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Sessiebestanden en inlogpogingen: ontstaan tijdens het draaien.
+backend/storage/sessions/*
+!backend/storage/sessions/.gitkeep
+backend/storage/rate-limit/*
+!backend/storage/rate-limit/.gitkeep

@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--
+      [TODO: favicon] Zet favicon.ico (48x48), favicon-192.png en
+      apple-touch-icon.png in public/favicon/ en zet deze regels hier terug:
+        link rel="icon" href="/favicon/favicon.ico" sizes="48x48"
+        link rel="icon" href="/favicon/favicon-192.png" type="image/png" sizes="192x192"
+        link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png"
+    -->
+
+    <!--
+      De pagina voor een onbekend adres. Apache toont hem via ErrorDocument in
+      .htaccess, mét de statuscode 404, en dus niet als gewone pagina.
+
+      Geen description, canonical of Open Graph: deze pagina hoort niet in een
+      zoekmachine of gedeelde link, en vite-seo.ts slaat hem over. De
+      noindex hieronder is een extra vangnet.
+    -->
+    <meta name="robots" content="noindex" />
+    <title>Pagina niet gevonden</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main-not-found.tsx"></script>
+  </body>
+</html>

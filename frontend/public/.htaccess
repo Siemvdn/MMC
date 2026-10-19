@@ -1,0 +1,119 @@
+# De publieke site: drie HTML-pagina's plus hun assets.
+#
+# Dit bestand komt via public/ in dist/ terecht en gaat dus mee bij de deploy.
+
+# ── HTTPS afdwingen (CLAUDE.md §11) ──────────────────────────────────────
+#
+# Werkt de site na de deploy niet meer, controleer dan eerst of het
+# SSL-certificaat in het paneel van de hosting actief is — zonder certificaat stuurt
+# deze regel bezoekers in een kringetje.
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    RewriteCond %{HTTPS} !=on
+    RewriteCond %{HTTP:X-Forwarded-Proto} !=https
+    RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+    # ── Geüploade foto's ─────────────────────────────────────────────────
+    #
+    # Content-JSON en de Validator kennen foto's alleen als /uploads/...
+    # (CLAUDE.md §10, §11) — geen omgevingsafhankelijk pad in de content.
+    # Fysiek staan ze in api/uploads/, want backend/public/ wordt bij deploy
+    # hernoemd naar api/ (§18) en Paths::uploads slaat daar fysiek in op.
+    # Zonder deze interne rewrite zou elke foto na de deploy een 404 zijn.
+    RewriteRule ^uploads/(.+)$ api/uploads/$1 [L]
+
+    # ── Schone URL's ─────────────────────────────────────────────────────
+    #
+    # /over-ons -> /over-ons.html, maar alleen als dat bestand echt bestaat.
+    # Zonder die controle zou elk willekeurig adres bij een HTML-bestand
+    # uitkomen in plaats van bij een nette 404.
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+    RewriteRule ^([^/.]+)/?$ /$1.html [L]
+
+    # Andersom: wie /over-ons.html intikt, wordt doorgestuurd naar /over-ons.
+    # Anders zijn er twee adressen voor dezelfde pagina, en dat is dubbele
+    # content (§12).
+    RewriteCond %{THE_REQUEST} \s/([^/.]+)\.html[\s?] [NC]
+    RewriteRule ^ /%1 [R=301,L]
+</IfModule>
+
+# ── Beveiligingsheaders (CLAUDE.md §11) ──────────────────────────────────
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    # SAMEORIGIN en niet DENY: het beheerscherm toont de voorbeeldpagina in
+    # een frame, en dat is dezelfde site. Elke andere site blijft geblokkeerd,
+    # dus clickjacking van buitenaf blijft onmogelijk. De API staat wél op
+    # DENY — die hoort nergens in een frame.
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+    # Beperkt wat de browser mag opvragen bij de bezoeker. Deze site vraagt
+    # niets van dat alles, dus alles staat uit.
+    Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
+
+    # ── Content Security Policy ──────────────────────────────────────────
+    #
+    # Geen 'unsafe-inline' en geen 'unsafe-eval'. Dat kan omdat de gebouwde
+    # pagina's nul inline scripts en nul inline style-attributen bevatten, en
+    # omdat de fonts zelf gehost worden in plaats van bij Google opgehaald.
+    # Nagemeten op de build, niet aangenomen.
+    #
+    # Wie hier later 'unsafe-inline' aan toevoegt om iets werkend te krijgen,
+    # haalt de bescherming er in één klap uit: dat is precies wat een
+    # XSS-aanval nodig heeft. Zoek dan liever uit wát er inline staat.
+    #
+    #   default-src 'self'   alles mag alleen van het eigen domein komen
+    #   img-src ... data:    data: is nodig voor eventuele inline SVG-iconen
+    #   connect-src 'self'   fetch mag alleen naar de eigen API
+    #   object-src 'none'    geen Flash/Java-achtige plugins
+    #   frame-ancestors      alleen de eigen site mag framen (het
+    #                        voorbeeldvenster van het beheer); elke andere
+    #                        site wordt geweigerd
+    Header always set Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'"
+
+    # ── HSTS ─────────────────────────────────────────────────────────────
+    #
+    # NOG NIET AANZETTEN. Voeg de regel hieronder pas toe nadat je met eigen
+    # ogen hebt gezien dat https:// op het echte domein werkt (§21). Zet je
+    # hem eerder aan, dan onthouden browsers een jaar lang dat ze alleen via
+    # HTTPS mogen verbinden — ook als dat nog niet werkt, en dat is niet meer
+    # terug te draaien bij de bezoeker.
+    #
+    #     Header always set Strict-Transport-Security "max-age=31536000"
+</IfModule>
+
+# ── Caching ──────────────────────────────────────────────────────────────
+#
+# Vite zet een hash in de bestandsnaam van elke JS-, CSS- en fontbundel.
+# Verandert de inhoud, dan verandert de naam, dus die mogen lang gecachet
+# worden. De HTML-bestanden houden hun naam en moeten dus elke keer opnieuw
+# gecontroleerd worden — anders ziet een bezoeker na een deploy nog de oude
+# pagina (CLAUDE.md §13).
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType text/html "access plus 0 seconds"
+    ExpiresByType text/css "access plus 1 year"
+    ExpiresByType application/javascript "access plus 1 year"
+    ExpiresByType font/woff2 "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 month"
+    ExpiresByType image/avif "access plus 1 month"
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+</IfModule>
+
+<IfModule mod_headers.c>
+    <FilesMatch "\.html$">
+        Header set Cache-Control "no-cache"
+    </FilesMatch>
+</IfModule>
+
+# Geen mapinhoud tonen als er geen indexbestand is (CLAUDE.md §11).
+Options -Indexes
+
+# Een onbekend adres toont de eigen pagina, mét statuscode 404 (CLAUDE.md §21).
+# Een 404-pagina met statuscode 200 zou zoekmachines laten denken dat elk
+# willekeurig adres een echte pagina is.
+ErrorDocument 404 /404.html

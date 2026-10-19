@@ -1,0 +1,42 @@
+# [TODO: AI-crawlerbeleid] — bevestiging van de klant over het beleid
+# hieronder (CLAUDE.md §12, §21).
+# [TODO: domein] — de Sitemap-regel onderaan, gelijk aan SITE_ORIGIN in
+# src/constants/site.ts.
+
+# Eén groep voor alle overige crawlers. Bewust niet gesplitst in twee
+# "User-agent: *"-blokken: bij dubbele groepen volgen crawlers meestal
+# alleen de eerste, waardoor de Disallow eronder genegeerd zou worden.
+User-agent: *
+Allow: /
+# Het admin-gedeelte hoort nooit in een index. Dit is geen beveiliging —
+# dat is de sessiecontrole server-side (CLAUDE.md §11) — maar het voorkomt
+# dat de inlogpagina in zoekresultaten opduikt.
+Disallow: /admin
+Disallow: /preview
+
+# AI-crawlers. CLAUDE.md §12 eist hier een bewuste keuze, geen stilzwijgen.
+# Werkaanname: toestaan. Voor een lokale dienstverlener is genoemd worden in
+# AI-antwoorden vindbaarheid, geen risico — de site bevat alleen publieke
+# marketingteksten. Blokkeren kan altijd nog; andersom is lastiger.
+# Nog te bevestigen met de klant.
+User-agent: GPTBot
+Allow: /
+Disallow: /admin
+Disallow: /preview
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /admin
+Disallow: /preview
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /admin
+Disallow: /preview
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /admin
+Disallow: /preview
+
+Sitemap: https://[TODO-domein]/sitemap.xml

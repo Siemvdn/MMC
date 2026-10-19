@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--
+      [TODO: favicon] Zet favicon.ico (48x48), favicon-192.png en
+      apple-touch-icon.png in public/favicon/ en zet deze regels hier terug:
+        link rel="icon" href="/favicon/favicon.ico" sizes="48x48"
+        link rel="icon" href="/favicon/favicon-192.png" type="image/png" sizes="192x192"
+        link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png"
+    -->
+
+    <!--
+      Deze pagina is het voorbeeldvenster van het beheer en hoort nergens in
+      een zoekresultaat. robots.txt sluit /preview uit en deze regel vraagt het
+      nog eens rechtstreeks aan de crawler.
+
+      Hij haalt zelf geen content op: wat er te zien is komt van het ingelogde
+      beheerscherm. Wie dit adres rechtstreeks opent, krijgt een lege pagina.
+    -->
+    <meta name="robots" content="noindex, nofollow" />
+
+    <title>Voorbeeld</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main-preview.tsx"></script>
+  </body>
+</html>

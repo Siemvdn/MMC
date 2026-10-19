@@ -1,0 +1,78 @@
+{
+    "_todo": [
+        "Alle teksten op deze pagina zijn plaatsvervangers. De echte inhoud komt van de klant en wordt vastgelegd in CLAUDE.md §2 voordat hij hier komt.",
+        "[TODO: meta.title en meta.description — uniek per pagina (CLAUDE.md §12). Werkt pas na een nieuwe build en deploy; het beheer biedt dit veld bewust niet aan.]"
+    ],
+    "meta": {
+        "title": "[TODO: paginatitel home]",
+        "description": "[TODO: meta description home]"
+    },
+    "sections": [
+        {
+            "type": "hero",
+            "background": "light",
+            "kicker": "[TODO: bovenkop]",
+            "heading": "[TODO: kop van de homepage]",
+            "text": "[TODO: inleidende tekst over het collectief]",
+            "image": null,
+            "imageAlt": "",
+            "layout": "beside",
+            "textColor": "dark",
+            "actions": [
+                {
+                    "label": "[TODO: knoptekst]",
+                    "target": "contact"
+                },
+                {
+                    "label": "[TODO: knoptekst]",
+                    "target": "over-ons"
+                }
+            ]
+        },
+        {
+            "type": "list",
+            "background": "tinted",
+            "heading": "[TODO: kop boven de kaarten]",
+            "intro": "[TODO: korte intro]",
+            "variant": "cards",
+            "items": [
+                {
+                    "title": "[TODO: titel]",
+                    "text": "[TODO: tekst]"
+                },
+                {
+                    "title": "[TODO: titel]",
+                    "text": "[TODO: tekst]"
+                }
+            ]
+        },
+        {
+            "type": "list",
+            "background": "light",
+            "heading": "[TODO: kop boven de stappen]",
+            "intro": "[TODO: korte intro]",
+            "variant": "steps",
+            "items": [
+                {
+                    "title": "[TODO: stap]",
+                    "text": "[TODO: tekst]"
+                },
+                {
+                    "title": "[TODO: stap]",
+                    "text": "[TODO: tekst]"
+                },
+                {
+                    "title": "[TODO: stap]",
+                    "text": "[TODO: tekst]"
+                }
+            ]
+        },
+        {
+            "type": "cta",
+            "background": "tinted",
+            "heading": "[TODO: afsluitende kop]",
+            "text": "[TODO: uitnodiging om contact op te nemen]",
+            "buttonLabel": "[TODO: knoptekst]"
+        }
+    ]
+}

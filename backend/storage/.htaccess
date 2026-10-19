@@ -1,0 +1,29 @@
+# Deze map mag nooit via de browser bereikbaar zijn.
+#
+# Hier staan de content-JSON's en de logbestanden. De content is via de API
+# op te vragen in de vorm die de frontend nodig heeft; de bestanden zelf
+# bevatten daarnaast interne aantekeningen (_todo) die niet naar buiten horen
+# (CLAUDE.md §9, §11). De logbestanden bevatten stack traces en bestandspaden.
+#
+# De bedoeling is dat alleen backend/public/ in de webroot staat. Lukt dat
+# niet op het hostingpakket, dan is dit bestand het vangnet.
+#
+# Beide schrijfwijzen staan er met opzet. Apache 2.4 gebruikt "Require all
+# denied"; "Deny from all" is de 2.2-vorm en werkt alleen met
+# mod_access_compat. Welke versie de hosting draait weten we niet zeker, en een
+# verkeerde gok betekent hier dat de broncode publiek staat.
+
+<IfModule mod_authz_core.c>
+    # Apache 2.4
+    Require all denied
+</IfModule>
+
+<IfModule !mod_authz_core.c>
+    # Apache 2.2
+    Order allow,deny
+    Deny from all
+</IfModule>
+
+# Geen mapinhoud tonen, ook niet als bovenstaande om welke reden dan ook
+# niet werkt.
+Options -Indexes

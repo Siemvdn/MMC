@@ -1,0 +1,65 @@
+{
+    "_todo": [
+        "Alle teksten op deze pagina zijn plaatsvervangers. Gebruik alleen feiten die de klant heeft aangeleverd en die in CLAUDE.md §2 als bevestigd staan.",
+        "[TODO: meta.title en meta.description — uniek per pagina (CLAUDE.md §12).]"
+    ],
+    "meta": {
+        "title": "[TODO: paginatitel over ons]",
+        "description": "[TODO: meta description over ons]"
+    },
+    "sections": [
+        {
+            "type": "hero",
+            "background": "light",
+            "kicker": "[TODO: bovenkop]",
+            "heading": "[TODO: kop van de over-ons-pagina]",
+            "text": "[TODO: tekst over het collectief]",
+            "image": null,
+            "imageAlt": "",
+            "layout": "beside",
+            "textColor": "dark",
+            "actions": []
+        },
+        {
+            "type": "prose",
+            "background": "light",
+            "heading": "[TODO: kop]",
+            "text": "[TODO: tekst over het collectief]",
+            "image": null,
+            "imageAlt": "",
+            "imagePosition": "right"
+        },
+        {
+            "type": "quote",
+            "background": "tinted",
+            "text": "[TODO: citaat]",
+            "supportingText": "[TODO: korte toelichting]",
+            "images": [],
+            "imagePosition": "right"
+        },
+        {
+            "type": "list",
+            "background": "light",
+            "heading": "[TODO: kop boven de tijdlijn]",
+            "intro": "[TODO: korte intro]",
+            "variant": "timeline",
+            "items": [
+                {
+                    "title": "[TODO: jaartal of moment]",
+                    "text": "[TODO: tekst]"
+                },
+                {
+                    "title": "[TODO: jaartal of moment]",
+                    "text": "[TODO: tekst]"
+                }
+            ]
+        },
+        {
+            "type": "cta",
+            "background": "tinted",
+            "heading": "[TODO: afsluitende kop]",
+            "text": "[TODO: uitnodiging om contact op te nemen]",
+            "buttonLabel": "[TODO: knoptekst]"
+        }
+    ]
+}

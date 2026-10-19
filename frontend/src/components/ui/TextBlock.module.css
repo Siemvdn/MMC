@@ -1,0 +1,17 @@
+.block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.paragraph {
+  margin: 0;
+
+  /*
+   * Behoudt regelafbrekingen binnen een alinea, terwijl gewone spaties wél
+   * samengevoegd worden. Zo blijft een adres of een opsomming die de klant met
+   * enters heeft ingetypt staan zoals hij hem bedoelde, zonder dat inspringing
+   * in het tekstvak per ongeluk op de site terechtkomt.
+   */
+  white-space: pre-line;
+}

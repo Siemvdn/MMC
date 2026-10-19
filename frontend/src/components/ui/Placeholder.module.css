@@ -1,0 +1,18 @@
+/*
+ * Bewust opvallend en lelijk. Dit hoort nooit op een live site te staan, dus
+ * het moet meteen in het oog springen als het er per ongeluk nog staat.
+ */
+.placeholder {
+  display: inline-block;
+  padding: 2px var(--space-2);
+  border: 1px dashed var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-muted);
+  font-family: var(--font-body);
+  font-size: var(--font-size-caption);
+  font-style: normal;
+  font-weight: var(--font-weight-medium);
+  letter-spacing: 0;
+  text-transform: none;
+  white-space: nowrap;
+}

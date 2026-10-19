@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--
+      [TODO: favicon] Zet favicon.ico (48x48), favicon-192.png en
+      apple-touch-icon.png in public/favicon/ en zet deze regels hier terug:
+        link rel="icon" href="/favicon/favicon.ico" sizes="48x48"
+        link rel="icon" href="/favicon/favicon-192.png" type="image/png" sizes="192x192"
+        link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png"
+    -->
+
+    <!--
+      De titel en beschrijving hieronder zijn een terugvaloptie. De echte
+      waarden staan in backend/storage/content/over-ons.json onder "meta" en
+      worden bij het bouwen hier ingezet door de plugin in vite-plugins.ts.
+      Zo staan ze op één plek, en ziet een crawler ze toch zonder JavaScript
+      (CLAUDE.md §12).
+
+      Het meta-blok is van de ontwikkelaar, niet van de klant: een wijziging
+      werkt pas na een nieuwe build en deploy. Het CMS biedt daarom alleen
+      "sections" aan.
+
+      De canonical, de Open Graph-tags en (op de homepage) het LocalBusiness-schema
+      komen bij het bouwen uit vite-seo.ts; die staan dus niet in dit bestand.
+    -->
+    <title>Over ons</title>
+    <meta name="description" content="" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main-over-ons.tsx"></script>
+  </body>
+</html>

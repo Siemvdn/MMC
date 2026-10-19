@@ -1,0 +1,541 @@
+/* Gedeelde opmaak voor de sectietypes. */
+
+.section {
+  padding-block: var(--section-padding-y);
+}
+
+/*
+ * Een sectie op een eigen getinte band, van schermrand tot schermrand.
+ *
+ * Dat doet twee dingen tegelijk: het geeft de pagina ritme in plaats van één lange egale lap, en
+ * het zet de kaarten af tegen een andere kleur. Op de gewone achtergrond
+ * schelen kaart en pagina maar een paar procent lichtheid, en dan vallen de
+ * kaarten weg.
+ */
+.band {
+  background: var(--color-section-bg);
+}
+
+/* ── Hero ─────────────────────────────────────────────────────────────── */
+
+.hero {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: var(--space-8);
+  align-items: center;
+}
+
+/*
+ * Zonder foto één kolom.
+ *
+ * Anders blijft de halve breedte van het scherm leeg wachten op een
+ * afbeelding die er niet is — en dat is precies hoe de pagina er kaal uit
+ * ging zien zolang de klant nog geen foto's had aangeleverd.
+ */
+.heroWithoutImage {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.heroBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.kicker {
+  color: var(--color-kicker);
+  font-family: var(--font-body);
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--letter-spacing-kicker);
+  text-transform: uppercase;
+}
+
+.heroHeading {
+  margin: 0;
+  font-size: var(--font-size-hero);
+  line-height: var(--line-height-hero);
+}
+
+.heroText {
+  margin: 0;
+  max-width: var(--measure-lead);
+  color: var(--color-text-prose);
+  font-size: var(--font-size-body-lg);
+  line-height: var(--line-height-body);
+}
+
+/* ── Prose ────────────────────────────────────────────────────────────── */
+
+/*
+ * Tekst links, beeld rechts — in verhoudingen, niet in pixels.
+ *
+ * Hier stond eerst `minmax(0, 320px)` voor de beeldkolom. Dat is een harde
+ * grens: hoe breed het scherm ook werd, de foto bleef 320 pixels en de pagina
+ * zag er op een groot scherm leeg uit. Met breukdelen groeit het beeld mee tot
+ * aan de leesbreedte van de site.
+ *
+ * De verhouding 1.3 tegen 1 geeft het beeld ruim 40% van de rij. Genoeg om te
+ * dragen, en de tekstkolom blijft breder dan de 62 tekens waarop de alinea
+ * toch al afgekapt wordt — die verliest er dus niets bij.
+ */
+.prose {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: var(--space-8);
+  align-items: start;
+}
+
+.proseWithoutImage {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+/*
+ * De foto links van de tekst in plaats van rechts.
+ *
+ * De opmaak blijft in de brontekst staan zoals hij is — een schermlezer
+ * krijgt dus altijd eerst de tekst te horen, ongeacht deze keuze. Alleen de
+ * kolombreedtes wisselen en `order` verplaatst de foto visueel naar voren.
+ */
+.proseImageLeft {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
+}
+
+.proseImageLeft > :first-child {
+  order: 2;
+}
+
+.proseImageLeft > :last-child {
+  order: 1;
+}
+
+.heading {
+  margin: 0 0 var(--space-4);
+  font-size: var(--font-size-h2);
+}
+
+.text {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--color-text-prose);
+  font-size: var(--font-size-body-sm);
+  line-height: var(--line-height-body-relaxed);
+}
+
+/* ── Quote ────────────────────────────────────────────────────────────── */
+
+/*
+ * Deelt zijn grid met Prose (.prose, .proseWithoutImage, .proseImageLeft):
+ * het is dezelfde indeling, tekst met een foto ernaast. Alleen de typografie
+ * van de tekst zelf verschilt.
+ */
+.quoteText {
+  margin: 0 0 var(--space-4);
+  font-style: italic;
+  font-size: var(--font-size-h4);
+  line-height: var(--line-height-heading);
+  color: var(--color-text-primary);
+}
+
+.quoteSupportingText {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--color-text-prose);
+  font-size: var(--font-size-body-sm);
+  line-height: var(--line-height-body-relaxed);
+}
+
+/* ── List ─────────────────────────────────────────────────────────────── */
+
+/* De kop van een lijstsectie: titel, met de inleiding eronder. */
+.listHeader {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-bottom: var(--space-8);
+}
+
+.listHeader .heading {
+  margin: 0;
+}
+
+.intro {
+  margin: 0;
+  max-width: var(--measure-prose);
+  color: var(--color-text-prose);
+  font-size: var(--font-size-body-sm);
+  line-height: var(--line-height-body);
+}
+
+/*
+ * Flex in plaats van een grid met auto-fit: de kaarten blijven zo altijd op
+ * één rij, hoeveel er ook zijn — ze worden smaller in plaats van dat een
+ * kaart die net niet meer past naar een nieuwe regel valt. Pas onder de
+ * mobiele breedte (zelfde grens als Container) is naast elkaar niet meer
+ * bruikbaar, en stapelen ze alsnog.
+ */
+.items {
+  display: flex;
+  gap: var(--space-6);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-8);
+  border-radius: var(--radius-card);
+  background: var(--color-card-bg);
+  box-shadow: var(--shadow-md);
+  text-align: center;
+}
+
+@media (max-width: 640px) {
+  .items {
+    flex-direction: column;
+  }
+}
+
+.itemTitle {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-h3);
+  line-height: var(--line-height-heading);
+}
+
+.itemText {
+  margin: 0;
+  color: var(--color-text-prose);
+  font-size: var(--font-size-body-sm);
+  line-height: var(--line-height-body);
+}
+
+/* ── Cta ──────────────────────────────────────────────────────────────── */
+
+.cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-8);
+  padding: var(--panel-padding);
+  border-radius: var(--radius-lg);
+  background: var(--color-panel-invert-bg);
+}
+
+.ctaBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.ctaHeading {
+  margin: 0;
+  color: var(--color-panel-invert-text);
+  font-size: var(--font-size-h2-panel);
+}
+
+.ctaText {
+  margin: 0;
+  color: var(--color-panel-invert-prose);
+  font-size: var(--font-size-body);
+}
+
+/* ── Mobiel ───────────────────────────────────────────────────────────── */
+
+@media (max-width: 860px) {
+  .hero,
+  .prose {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .heroHeading {
+    font-size: var(--font-size-hero-mobile);
+  }
+
+  .section {
+    padding-block: var(--section-padding-y-compact);
+  }
+
+  .cta {
+    padding: var(--space-8);
+  }
+}
+
+/* ── Hero als brede banner ────────────────────────────────────────────── */
+
+/*
+ * De foto vult de volle breedte en de tekst staat eroverheen. De sectie zelf
+ * krijgt hier geen verticale ruimte: de banner bepaalt zijn eigen hoogte.
+ */
+.banner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 460px;
+  padding-block: var(--space-8);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/*
+ * Container centreert zichzelf normaal met `margin-inline: auto` binnen zijn
+ * eigen ouder — nodig voor secties die op dezelfde achtergrond staan als de
+ * rest van de pagina. Bij een brede foto is die ouder de volle schermbreedte,
+ * dus zou diezelfde centrering de tekst juist wegduwen van de linkerkant waar
+ * hij hoort te staan (§14: tekst moet zijn plek behouden, ongeacht schermbreedte).
+ */
+.bannerContainer {
+  width: 100%;
+  margin-inline: 0;
+}
+
+.bannerImage {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/*
+ * De sluier achter de tekst.
+ *
+ * Alleen de tekstkleur omzetten is op een drukke foto vaak nét niet genoeg —
+ * witte letters verdwijnen in een wolk, zwarte in een schaduw. De tekst staat
+ * links en verticaal gecentreerd (over de volle hoogte dus), dus loopt dit
+ * verloop van de linkerrand naar rechts en is aan de rechterkant volledig
+ * doorzichtig, zodat de foto daar zichtbaar blijft en de tekst links toch
+ * rust krijgt.
+ */
+.banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+.bannerLight::before {
+  background: linear-gradient(
+    to right,
+    color-mix(in srgb, var(--color-scrim-dark) 75%, transparent) 0%,
+    color-mix(in srgb, var(--color-scrim-dark) 35%, transparent) 45%,
+    transparent 80%
+  );
+}
+
+.bannerDark::before {
+  background: linear-gradient(
+    to right,
+    color-mix(in srgb, var(--color-scrim-light) 82%, transparent) 0%,
+    color-mix(in srgb, var(--color-scrim-light) 45%, transparent) 45%,
+    transparent 80%
+  );
+}
+
+.bannerBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  max-width: var(--measure-lead);
+}
+
+.bannerLight .bannerKicker,
+.bannerLight .bannerHeading,
+.bannerLight .bannerText {
+  color: var(--color-text-on-dark);
+}
+
+.bannerDark .bannerKicker,
+.bannerDark .bannerHeading,
+.bannerDark .bannerText {
+  color: var(--color-text-primary);
+}
+
+.bannerKicker {
+  font-family: var(--font-body);
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--letter-spacing-kicker);
+  text-transform: uppercase;
+}
+
+.bannerHeading {
+  margin: 0;
+  font-size: var(--font-size-hero);
+  line-height: var(--line-height-hero);
+}
+
+.bannerText {
+  margin: 0;
+  font-size: var(--font-size-body-lg);
+  line-height: var(--line-height-body);
+}
+
+@media (max-width: 860px) {
+  .banner {
+    min-height: 320px;
+  }
+
+  .bannerHeading {
+    font-size: var(--font-size-hero-mobile);
+  }
+}
+
+/* De knoppen onder een paginakop; wikkelen op smalle schermen. */
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+}
+
+/* ── Lijst als genummerde stappen ─────────────────────────────────────── */
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-8) var(--space-6);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+/*
+ * De cijferschijf. Het cijfer is tekst op een gekleurd vlak, dus de
+ * combinatie --color-step-text op --color-step-bg moet minstens 4,5:1 halen
+ * (CLAUDE.md §14).
+ */
+.stepNumber {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  margin-bottom: var(--space-2);
+  border-radius: var(--radius-pill);
+  background: var(--color-step-bg);
+  color: var(--color-step-text);
+  font-family: var(--font-heading);
+  font-size: var(--font-size-body-sm);
+}
+
+.stepTitle {
+  color: var(--color-step-title);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-body-sm);
+}
+
+/* ── Lijst als tijdlijn ────────────────────────────────────────────────── */
+
+/*
+ * Bolletjes op een lijn: dezelfde herhaalbare items als bij kaarten en
+ * stappen, maar dan als verloop door de tijd. `--timeline-dot-size` bepaalt
+ * zowel de grootte van elk bolletje als waar de lijn ervoor of erachter komt
+ * te lopen, zodat die twee nooit los van elkaar kunnen gaan verschuiven.
+ */
+.timeline {
+  --timeline-dot-size: 12px;
+
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin: var(--space-2) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* De lijn zelf: één balk achter alle bolletjes, niet per item getekend. */
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: calc(var(--timeline-dot-size) / 2);
+  right: 0;
+  left: 0;
+  height: 1px;
+  background: var(--color-indicator);
+}
+
+.timelineItem {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  text-align: center;
+}
+
+.timelineDot {
+  flex-shrink: 0;
+  width: var(--timeline-dot-size);
+  height: var(--timeline-dot-size);
+  border-radius: var(--radius-pill);
+  background: var(--color-indicator-active);
+}
+
+/* Periode en label horen bij elkaar, ook als de lijn straks verticaal ligt. */
+.timelineContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.timelinePeriod {
+  color: var(--color-text-primary);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-meta);
+}
+
+.timelineLabel {
+  margin: 0;
+  color: var(--color-text-prose);
+  font-size: var(--font-size-caption);
+  line-height: var(--line-height-ui);
+}
+
+/*
+ * Onder de mobiele breedte staat een rij van vijf smalle kolommen niet meer
+ * leesbaar: de lijn en de bolletjes draaien daarom mee naar verticaal, met de
+ * tekst naast elk bolletje in plaats van eronder.
+ */
+@media (max-width: 640px) {
+  .timeline {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-5);
+  }
+
+  .timeline::before {
+    top: 0;
+    bottom: 0;
+    left: calc(var(--timeline-dot-size) / 2);
+    right: auto;
+    width: 1px;
+    height: auto;
+  }
+
+  .timelineItem {
+    flex-direction: row;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .timelineDot {
+    /* Optisch uitgelijnd met de eerste tekstregel in plaats van de bovenrand. */
+    margin-top: 5px;
+  }
+}

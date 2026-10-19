@@ -1,0 +1,32 @@
+/*
+ * Het beeldvlak meet zichzelf op, zodat de regel hieronder in verhouding tot
+ * de eigen breedte kan rekenen in plaats van in vaste pixels.
+ */
+.figure {
+  container-type: inline-size;
+  margin: 0;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+
+  /*
+   * Een foto mag hoogstens een kwart hoger worden dan hij breed is (5:4).
+   *
+   * Waarom: liggende en vierkante foto's blijven hierdoor onaangeroerd, maar
+   * een uitgesproken staande foto zou anders naast een alinea van drie regels
+   * een kolom van meer dan zeshonderd pixels hoog worden — met een groot leeg
+   * vlak ernaast.
+   *
+   * `cqw` is één procent van de breedte van het beeldvlak. Daarmee schaalt de
+   * grens mee met het scherm, in plaats van dat er weer een vast getal in de
+   * opmaak sluipt. Kent een browser die eenheid niet, dan vervalt deze regel
+   * en houdt de foto gewoon zijn eigen verhouding — dat is geen fout, alleen
+   * de oude situatie.
+   */
+  max-height: 125cqw;
+  object-fit: cover;
+
+  border-radius: var(--radius-lg);
+}
