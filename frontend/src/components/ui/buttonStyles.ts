@@ -1,6 +1,10 @@
 import styles from './Button.module.css';
 
-export type ButtonVariant = 'primary' | 'secondary';
+/**
+ * `inverted` is de lichte knop op een donker of gekleurd vlak, zoals het
+ * afsluitende blok: een gewone knop in de accentkleur zou daar wegvallen.
+ */
+export type ButtonVariant = 'primary' | 'secondary' | 'inverted';
 export type ButtonSize = 'normal' | 'large';
 
 /**

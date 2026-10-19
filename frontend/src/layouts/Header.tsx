@@ -1,6 +1,7 @@
 import { useEffect, useId, useRef, useState } from 'react';
 
 import { HEADER_ACTION, ROUTES, pathForSlug, type PageSlug } from '../constants/routes';
+import { BrandMark } from '../components/ui/BrandMark';
 import { ButtonLink } from '../components/ui/ButtonLink';
 import { Placeholder } from '../components/ui/Placeholder';
 import styles from './Header.module.css';
@@ -54,6 +55,7 @@ export function Header({ businessName, currentSlug }: HeaderProps) {
     <header className={styles.header} ref={headerRef}>
       <div className={styles.inner}>
         <a href="/" className={styles.brand}>
+          <BrandMark />
           {businessName === '' ? <Placeholder label="bedrijfsnaam" /> : businessName}
         </a>
 

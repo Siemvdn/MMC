@@ -1,6 +1,6 @@
 import type { PageSlug } from '../../constants/routes';
-import type { ContentSection } from '../../types/content';
-import { ContactForm } from './ContactForm';
+import type { ContentSection, SiteContent } from '../../types/content';
+import { ContactPanel } from './ContactPanel';
 import { PageSections } from './PageSections';
 
 export interface PublicPageBodyProps {
@@ -11,6 +11,8 @@ export interface PublicPageBodyProps {
    * het beheer een blok kan aanwijzen. Standaard uit.
    */
   annotate?: boolean;
+  /** Voor de contactgegevens naast het formulier op de contactpagina. */
+  site?: SiteContent;
 }
 
 /**
@@ -25,7 +27,7 @@ export interface PublicPageBodyProps {
  * Nu is "het voorbeeld toont wat de site toont" geen belofte maar een gevolg:
  * er is één implementatie.
  */
-export function PublicPageBody({ slug, sections, annotate = false }: PublicPageBodyProps) {
+export function PublicPageBody({ slug, sections, annotate = false, site }: PublicPageBodyProps) {
   if (slug !== 'contact') {
     return <PageSections sections={sections} annotate={annotate} />;
   }
@@ -43,7 +45,7 @@ export function PublicPageBody({ slug, sections, annotate = false }: PublicPageB
           theorie ontbreken en dat moeten we hier afhandelen. */}
       {invitation !== undefined && <PageSections sections={[invitation]} annotate={annotate} />}
 
-      <ContactForm />
+      <ContactPanel site={site} />
 
       {/* h2, want de h1 van deze pagina staat hierboven al. */}
       {remaining.length > 0 && (

@@ -1,0 +1,63 @@
+/*
+ * De webfonts, zelf gehost (CLAUDE.md §12, §15): geen verbinding met Google
+ * of een andere derde partij, dus geen IP-adres van bezoekers dat ergens
+ * anders terechtkomt en geen extra verbinding vóór de eerste weergave.
+ *
+ * Beide fonts vallen onder de SIL Open Font License; de licenties staan naast
+ * de bestanden in `src/assets/fonts/`.
+ *
+ * Per font twee bestanden, gesplitst met `unicode-range`: `latin` dekt het
+ * Nederlands (ook é, ë en ï), `latin-ext` alleen wat daarbuiten valt, zoals
+ * een naam met ł of ş. Een browser haalt `latin-ext` dus pas op als zo'n
+ * teken echt op de pagina staat.
+ *
+ * `font-display: swap`: de tekst staat er meteen in het systeemfont en wisselt
+ * zodra het webfont binnen is, in plaats van onzichtbaar te wachten (LCP).
+ */
+
+@font-face {
+  font-family: 'Young Serif';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../assets/fonts/young-serif-latin.woff2') format('woff2');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Young Serif';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../assets/fonts/young-serif-latin-ext.woff2') format('woff2');
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
+    U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F,
+    U+A720-A7FF;
+}
+
+/* Een variabel font: één bestand voor alle gewichten van 400 tot 700. */
+@font-face {
+  font-family: 'Instrument Sans';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('../assets/fonts/instrument-sans-latin.woff2') format('woff2');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Instrument Sans';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('../assets/fonts/instrument-sans-latin-ext.woff2') format('woff2');
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
+    U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F,
+    U+A720-A7FF;
+}

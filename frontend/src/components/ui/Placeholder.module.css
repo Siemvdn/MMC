@@ -5,9 +5,10 @@
 .placeholder {
   display: inline-block;
   padding: 2px var(--space-2);
-  border: 1px dashed var(--color-border-strong);
+  /* De kleur van de omgeving, zodat hij ook in de donkere voettekst opvalt. */
+  border: 1px dashed currentColor;
   border-radius: var(--radius-sm);
-  color: var(--color-text-muted);
+  color: inherit;
   font-family: var(--font-body);
   font-size: var(--font-size-caption);
   font-style: normal;

@@ -1,0 +1,45 @@
+/*
+ * Geen ruimte erboven: het paneel hoort bij de paginakop erboven, en die
+ * sectie heeft onderaan al zijn eigen witruimte.
+ */
+.panel {
+  padding-block: 0 var(--section-padding-y);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
+  gap: var(--space-12) var(--space-16);
+  align-items: start;
+}
+
+/* Zonder contactgegevens neemt het formulier de linkerkolom in. */
+.grid > .formCard:only-child {
+  grid-column: 1 / -1;
+  max-width: var(--measure-lead);
+}
+
+.details {
+  font-size: var(--font-size-body);
+}
+
+.formCard {
+  padding: var(--panel-padding);
+  border: 1px solid var(--color-divider);
+  border-radius: var(--radius-card);
+  background: var(--color-section-bg);
+}
+
+@media (max-width: 860px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .panel {
+    padding-block-end: var(--section-padding-y-compact);
+  }
+
+  .formCard {
+    padding: var(--space-6);
+  }
+}

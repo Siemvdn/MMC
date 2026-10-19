@@ -1,0 +1,6 @@
+/* Even groot als de tekst ernaast, en nooit samengedrukt in een smalle flexrij. */
+.icon {
+  flex-shrink: 0;
+  width: 1.1em;
+  height: 1.1em;
+}

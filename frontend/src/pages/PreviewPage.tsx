@@ -151,7 +151,12 @@ export function PreviewPage() {
       }}
     >
       <PageLayout currentSlug={content.slug} site={content.site}>
-        <PublicPageBody slug={content.slug} sections={content.sections} annotate />
+        <PublicPageBody
+          slug={content.slug}
+          sections={content.sections}
+          site={content.site}
+          annotate
+        />
       </PageLayout>
     </div>
   );

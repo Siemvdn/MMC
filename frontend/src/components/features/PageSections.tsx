@@ -429,7 +429,7 @@ function Cta({
             </Heading>
             <TextBlock text={section.text} className={styles.ctaText} />
           </div>
-          <ButtonLink href={CONTACT_PATH} size="large">
+          <ButtonLink href={CONTACT_PATH} variant="inverted" size="large">
             {section.buttonLabel}
           </ButtonLink>
         </div>

@@ -18,7 +18,7 @@ export function AboutPage() {
 
   return (
     <PageLayout currentSlug={SLUG} site={state.data.site}>
-      <PublicPageBody slug={SLUG} sections={state.data.sections} />
+      <PublicPageBody slug={SLUG} sections={state.data.sections} site={state.data.site} />
     </PageLayout>
   );
 }

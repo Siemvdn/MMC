@@ -8,12 +8,14 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--space-1);
-  padding: var(--space-3) var(--space-6);
-  border: 1px solid transparent;
+  gap: var(--space-2);
+  min-height: var(--touch-target);
+  padding: var(--space-2) var(--space-5);
+  border: 1.5px solid transparent;
   border-radius: var(--radius-control);
-  font-family: var(--font-heading);
+  font-family: var(--font-body);
   font-size: var(--font-size-ui);
+  font-weight: var(--font-weight-medium);
   line-height: var(--line-height-ui);
   text-decoration: none;
   cursor: pointer;
@@ -48,6 +50,16 @@
   background: var(--color-action-secondary-active);
 }
 
+.inverted {
+  background: var(--color-action-inverted-bg);
+  color: var(--color-action-inverted-text);
+}
+
+.inverted:hover {
+  background: var(--color-action-inverted-bg-hover);
+  color: var(--color-action-inverted-text);
+}
+
 .button:disabled {
   opacity: 0.45;
   cursor: not-allowed;
@@ -55,6 +67,7 @@
 
 /* Grotere variant voor de hero en het afsluitende blok. */
 .large {
-  padding: 15px 30px;
-  font-size: var(--font-size-body);
+  min-height: var(--control-height-large);
+  padding: var(--space-3) var(--space-6);
+  font-size: var(--font-size-body-sm);
 }

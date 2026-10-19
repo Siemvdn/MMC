@@ -1,11 +1,8 @@
+/* De breedte en de kaart eromheen komen van ContactPanel. */
 .form {
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
-  max-width: 620px;
-  /* Geen ruimte erboven: het formulier hoort bij de titel erboven, en die
-     sectie heeft onderaan al zijn eigen witruimte. */
-  padding-block: 0 var(--section-padding-y-compact);
+  gap: var(--space-5);
 }
 
 .row {

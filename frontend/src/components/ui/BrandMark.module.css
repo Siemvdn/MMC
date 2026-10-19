@@ -1,0 +1,23 @@
+/* Schaalt mee met de tekst van de naam ernaast. */
+.mark {
+  flex-shrink: 0;
+  width: 2em;
+  height: 2em;
+}
+
+.tile {
+  fill: var(--color-brand-mark);
+}
+
+.key {
+  fill: var(--color-brand-mark-key);
+}
+
+/* Op de donkere voettekst: een licht vlak met een donkere vlinderzwaluw. */
+.inverted .tile {
+  fill: var(--color-brand-mark-key);
+}
+
+.inverted .key {
+  fill: var(--color-footer-bg);
+}

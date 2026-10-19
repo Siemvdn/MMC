@@ -4,7 +4,6 @@ import { useFetch } from '../../hooks/useFetch';
 import { fetchContactToken, submitContact, type ContactFormData } from '../../services/contactApi';
 import { validateContactForm, type ContactFormErrors } from '../../utils/validateContactForm';
 import { Button } from '../ui/Button';
-import { Container } from '../ui/Container';
 import { Field } from '../ui/Field';
 import styles from './ContactForm.module.css';
 
@@ -84,71 +83,69 @@ export function ContactForm() {
   }
 
   return (
-    <Container>
-      <form
-        className={styles.form}
-        onSubmit={(event) => {
-          void handleSubmit(event);
-        }}
-        noValidate
-      >
-        <div className={styles.row}>
-          <Field
-            id={`${fieldId}-naam`}
-            label="Naam"
-            value={values.name}
-            error={errors.name}
-            onChange={(value) => {
-              update('name', value);
-            }}
-            required
-          />
-          <Field
-            id={`${fieldId}-email`}
-            label="E-mailadres"
-            type="email"
-            value={values.email}
-            error={errors.email}
-            onChange={(value) => {
-              update('email', value);
-            }}
-            required
-          />
-        </div>
-
+    <form
+      className={styles.form}
+      onSubmit={(event) => {
+        void handleSubmit(event);
+      }}
+      noValidate
+    >
+      <div className={styles.row}>
         <Field
-          id={`${fieldId}-bericht`}
-          label="Bericht"
-          value={values.message}
-          error={errors.message}
+          id={`${fieldId}-naam`}
+          label="Naam"
+          value={values.name}
+          error={errors.name}
           onChange={(value) => {
-            update('message', value);
+            update('name', value);
           }}
-          multiline
           required
         />
+        <Field
+          id={`${fieldId}-email`}
+          label="E-mailadres"
+          type="email"
+          value={values.email}
+          error={errors.email}
+          onChange={(value) => {
+            update('email', value);
+          }}
+          required
+        />
+      </div>
 
-        <div className={styles.actions}>
-          <Button type="submit" disabled={submitState.status === 'loading'}>
-            {submitState.status === 'loading' ? 'Bezig met versturen…' : 'Versturen'}
-          </Button>
-          <span className={styles.note}>
-            Uw gegevens worden alleen gebruikt om op uw aanvraag te reageren en worden niet bewaard.
-          </span>
-        </div>
+      <Field
+        id={`${fieldId}-bericht`}
+        label="Bericht"
+        value={values.message}
+        error={errors.message}
+        onChange={(value) => {
+          update('message', value);
+        }}
+        multiline
+        required
+      />
 
-        {submitState.status === 'success' && (
-          <p className={styles.feedback} role="status">
-            Bedankt voor uw aanvraag. Er wordt zo snel mogelijk contact met u opgenomen.
-          </p>
-        )}
+      <div className={styles.actions}>
+        <Button type="submit" disabled={submitState.status === 'loading'}>
+          {submitState.status === 'loading' ? 'Bezig met versturen…' : 'Versturen'}
+        </Button>
+        <span className={styles.note}>
+          Uw gegevens worden alleen gebruikt om op uw aanvraag te reageren en worden niet bewaard.
+        </span>
+      </div>
 
-        {submitState.status === 'error' && (
-          <p className={styles.feedbackError} role="alert">
-            {submitState.message}
-          </p>
-        )}
-      </form>
-    </Container>
+      {submitState.status === 'success' && (
+        <p className={styles.feedback} role="status">
+          Bedankt voor uw aanvraag. Er wordt zo snel mogelijk contact met u opgenomen.
+        </p>
+      )}
+
+      {submitState.status === 'error' && (
+        <p className={styles.feedbackError} role="alert">
+          {submitState.message}
+        </p>
+      )}
+    </form>
   );
 }

@@ -2,15 +2,17 @@
 
 ## Uitgangspunt
 
-Deze starter heeft **bewust geen design**. `tokens.css` bevat een neutrale
-basis — grijstinten en het systeemfont — zodat de site werkt, toegankelijk
-is en er rustig uitziet tot het echte design er is.
+Het design is warm en ambachtelijk, met hout als basis: linnen en licht
+eiken als ondergrond, walnoot voor tekst en de voettekst, mosgroen als
+accent. Koppen in Young Serif, lopende tekst in Instrument Sans. Het is
+goedgekeurd aan de hand van een mockup (CLAUDE.md §2, Vormgeving).
 
 Het uiterlijk ligt op precies één plek vast:
 
 | Bestand      | Inhoud                                                                |
 | ------------ | --------------------------------------------------------------------- |
 | `tokens.css` | alle design tokens: kleuren, fonts, groottes, ruimte, vorm, schaduwen |
+| `fonts.css`  | de `@font-face`-regels van de zelf gehoste webfonts                   |
 | `global.css` | reset, basistypografie, link- en focusgedrag (leest alleen tokens)    |
 
 De `.module.css`-bestanden naast de componenten bevatten de opbouw (grid,
@@ -61,12 +63,18 @@ binnen `tokens.css` zelf gebruikt.
 5. Ziet een component er daarna nog niet goed uit, pas dan pas zijn
    `.module.css` aan — en voeg daar geen kleur of font toe, maar een token.
 
-## Wat er in de neutrale basis staat
+## Wat er in het design staat
 
-- **Kleur:** een grijsschaal van wit tot bijna zwart. De enige echte kleuren
-  zijn rood en groen voor fout- en succesmeldingen: die hebben een functie,
-  geen merk. De tekst van een melding zegt altijd óók wat er aan de hand is,
-  dus kleur is nooit de enige drager (§14).
-- **Typografie:** het systeemfont voor koppen en lopende tekst.
-- **Vorm:** kleine hoekradius op knoppen en velden (`--radius-control`); wat
-  altijd rond is (bolletjes, cijferschijven) gebruikt `--radius-pill`.
+- **Kleur:** linnen (`--linen-*`) en eiken (`--oak-*`) als ondergrond en
+  lijnen, walnoot (`--walnut-*`) voor tekst en de voettekst, mosgroen
+  (`--moss-*`) voor knoppen, links en accenten. Honingkleurig eiken
+  (`--oak-500`) is alleen decoratief: te licht voor tekst. Rood en groen
+  blijven voor fout- en succesmeldingen; de tekst van een melding zegt
+  altijd óók wat er aan de hand is (§14).
+- **Typografie:** Young Serif voor koppen, Instrument Sans voor lopende
+  tekst en de interface, allebei zelf gehost vanuit `src/assets/fonts/`.
+  Young Serif bestaat alleen in één gewicht en zonder cursief; daarom staat
+  `--font-weight-heading` op 400 en is het citaat niet schuingedrukt.
+- **Vorm:** kleine hoekradius op knoppen, velden en foto's; wat altijd rond
+  is (bolletjes, labels) gebruikt `--radius-pill`. Foto's in kaarten hebben
+  een vaste verhouding (`--ratio-*`), zodat een raster recht blijft.

@@ -21,7 +21,7 @@
 .hero {
   display: grid;
   grid-template-columns: 1.05fr 1fr;
-  gap: var(--space-8);
+  gap: var(--space-12) var(--space-16);
   align-items: center;
 }
 
@@ -60,7 +60,7 @@
 .heroText {
   margin: 0;
   max-width: var(--measure-lead);
-  color: var(--color-text-prose);
+  color: var(--color-text-muted);
   font-size: var(--font-size-body-lg);
   line-height: var(--line-height-body);
 }
@@ -82,8 +82,8 @@
 .prose {
   display: grid;
   grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
-  gap: var(--space-8);
-  align-items: start;
+  gap: var(--space-12) var(--space-16);
+  align-items: center;
 }
 
 .proseWithoutImage {
@@ -110,7 +110,7 @@
 }
 
 .heading {
-  margin: 0 0 var(--space-4);
+  margin: 0 0 var(--space-5);
   font-size: var(--font-size-h2);
 }
 
@@ -118,7 +118,7 @@
   margin: 0;
   max-width: 62ch;
   color: var(--color-text-prose);
-  font-size: var(--font-size-body-sm);
+  font-size: var(--font-size-body);
   line-height: var(--line-height-body-relaxed);
 }
 
@@ -129,11 +129,17 @@
  * het is dezelfde indeling, tekst met een foto ernaast. Alleen de typografie
  * van de tekst zelf verschilt.
  */
+/*
+ * Het citaat in de koppenletter, niet cursief: Young Serif heeft geen
+ * cursieve variant, en een door de browser schuin getrokken letter oogt
+ * slordig.
+ */
 .quoteText {
-  margin: 0 0 var(--space-4);
-  font-style: italic;
-  font-size: var(--font-size-h4);
+  margin: 0 0 var(--space-5);
+  font-family: var(--font-heading);
+  font-size: var(--font-size-h2-panel);
   line-height: var(--line-height-heading);
+  letter-spacing: var(--letter-spacing-heading);
   color: var(--color-text-primary);
 }
 
@@ -151,8 +157,8 @@
 .listHeader {
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);
-  margin-bottom: var(--space-8);
+  gap: var(--space-3);
+  margin-bottom: var(--space-10);
 }
 
 .listHeader .heading {
@@ -186,14 +192,12 @@
   flex: 1 1 0;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
   gap: var(--space-2);
   padding: var(--space-8);
+  border: 1px solid var(--color-divider);
   border-radius: var(--radius-card);
   background: var(--color-card-bg);
-  box-shadow: var(--shadow-md);
-  text-align: center;
 }
 
 @media (max-width: 640px) {
@@ -222,8 +226,8 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: var(--space-8);
-  padding: var(--panel-padding);
+  gap: var(--space-8) var(--space-16);
+  padding: var(--panel-padding) var(--space-16);
   border-radius: var(--radius-lg);
   background: var(--color-panel-invert-bg);
 }
@@ -242,6 +246,7 @@
 
 .ctaText {
   margin: 0;
+  max-width: var(--measure-lead);
   color: var(--color-panel-invert-prose);
   font-size: var(--font-size-body);
 }
@@ -256,6 +261,10 @@
 
   .heroHeading {
     font-size: var(--font-size-hero-mobile);
+  }
+
+  .heading {
+    font-size: var(--font-size-h2-mobile);
   }
 
   .section {
@@ -393,7 +402,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-3);
-  margin-top: var(--space-6);
+  margin-top: var(--space-2);
 }
 
 /* ── Lijst als genummerde stappen ─────────────────────────────────────── */
@@ -401,40 +410,39 @@
 .steps {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: var(--space-8) var(--space-6);
+  gap: var(--space-8) var(--space-8);
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
+/* Elke stap onder een dunne lijn, als een maatstreep op een werkbank. */
 .step {
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--color-border);
 }
 
 /*
- * De cijferschijf. Het cijfer is tekst op een gekleurd vlak, dus de
- * combinatie --color-step-text op --color-step-bg moet minstens 4,5:1 halen
- * (CLAUDE.md §14).
+ * Het cijfer, in de koppenletter en de accentkleur. Het is tekst, dus de
+ * combinatie --color-step-text op --color-step-bg (of op de achtergrond van
+ * de sectie, als die doorzichtig is) moet minstens 4,5:1 halen (§14).
  */
 .stepNumber {
-  display: grid;
-  place-items: center;
-  width: 40px;
-  height: 40px;
-  margin-bottom: var(--space-2);
-  border-radius: var(--radius-pill);
+  margin-bottom: var(--space-1);
   background: var(--color-step-bg);
   color: var(--color-step-text);
   font-family: var(--font-heading);
-  font-size: var(--font-size-body-sm);
+  font-size: var(--font-size-h3);
+  line-height: var(--line-height-heading);
 }
 
 .stepTitle {
   color: var(--color-step-title);
   font-weight: var(--font-weight-medium);
-  font-size: var(--font-size-body-sm);
+  font-size: var(--font-size-body);
 }
 
 /* ── Lijst als tijdlijn ────────────────────────────────────────────────── */

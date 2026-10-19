@@ -1,0 +1,49 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.line {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+/*
+ * Met labels: elk gegeven tussen dunne lijnen, het icoon in de accentkleur.
+ * Zo staat het op de contactpagina, waar het naast het formulier de
+ * hoofdzaak is in plaats van een regel in de voettekst.
+ */
+.labelled {
+  gap: 0;
+}
+
+.labelled .line {
+  align-items: flex-start;
+  padding-block: var(--space-4);
+  border-top: 1px solid var(--color-divider);
+}
+
+.labelled .line:last-child {
+  border-bottom: 1px solid var(--color-divider);
+}
+
+.labelled svg {
+  margin-top: var(--space-1);
+  color: var(--color-kicker);
+}
+
+.label {
+  display: block;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-meta);
+  font-weight: var(--font-weight-medium);
+}
+
+.link {
+  color: inherit;
+}

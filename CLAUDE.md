@@ -2,7 +2,7 @@
 
 Dit bestand wordt bij elke prompt gelezen. Het legt vast hoe code in dit project geschreven wordt, welke stack we gebruiken, en welke beveiligings- en SEO-eisen altijd gelden. Wijk hier niet vanaf zonder dit expliciet te bespreken en dit bestand bij te werken.
 
-> **Status: merkloze starter.** De functionele basis (pagina's, PHP-API, Repository-laag, admin panel, CMS) staat en is getest. Design en klantcontent ontbreken nog bewust: overal waar die horen staat `[TODO: …]`. Zoek ze op met `grep -rn "TODO" --exclude-dir=node_modules .`.
+> **Status: design doorgevoerd, klantcontent ontbreekt.** De functionele basis (pagina's, PHP-API, Repository-laag, admin panel, CMS) en het design staan en zijn getest. De klantcontent ontbreekt nog bewust: overal waar die hoort staat `[TODO: …]`. Zoek ze op met `grep -rn "TODO" --exclude-dir=node_modules .`.
 
 ---
 
@@ -40,7 +40,8 @@ Markeer elk feit als ✅ **Bevestigd** of ⏳ **Nog niet bevestigd — niet gebr
 - Schrijf de tekst voorlopig kort en feitelijk, uitsluitend gebaseerd op bevestigde punten. Geen persoonlijke details of anekdotes verzinnen die niet expliciet zijn aangeleverd — die komen er later bij als de klant zelf via de CMS aanvult of corrigeert.
 
 ### Vormgeving
-- [TODO: designwensen van de klant.] Het design komt in `frontend/src/styles/tokens.css` (zie `frontend/src/styles/README.md`). Bevestig een nieuw design met een mockup voordat het definitief wordt doorgevoerd.
+- ✅ **Bevestigd** — De klant heeft geen uitgesproken designvoorkeur. Het thema is hout en huiselijke inrichting. (Doorgegeven door de ontwikkelaar, 19 oktober 2026.)
+- ✅ **Bevestigd** — Het design is goedgekeurd aan de hand van een mockup (19 oktober 2026): linnen en licht eiken als ondergrond, walnoot voor tekst en voettekst, mosgroen als accent; koppen in Young Serif, lopende tekst in Instrument Sans (beide zelf gehost, SIL Open Font License). Het staat in `frontend/src/styles/tokens.css` (zie `frontend/src/styles/README.md`). Bevestig een nieuw design opnieuw met een mockup voordat het definitief wordt doorgevoerd.
 
 ### Foto's
 - [TODO: welke foto's de klant aanlevert en waarvoor.]
