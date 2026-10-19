@@ -37,11 +37,11 @@
             "variant": "cards",
             "items": [
                 {
-                    "title": "[TODO: titel]",
+                    "title": "[TODO: titel 1]",
                     "text": "[TODO: tekst]"
                 },
                 {
-                    "title": "[TODO: titel]",
+                    "title": "[TODO: titel 2]",
                     "text": "[TODO: tekst]"
                 }
             ]
@@ -54,15 +54,15 @@
             "variant": "steps",
             "items": [
                 {
-                    "title": "[TODO: stap]",
+                    "title": "[TODO: stap 1]",
                     "text": "[TODO: tekst]"
                 },
                 {
-                    "title": "[TODO: stap]",
+                    "title": "[TODO: stap 2]",
                     "text": "[TODO: tekst]"
                 },
                 {
-                    "title": "[TODO: stap]",
+                    "title": "[TODO: stap 3]",
                     "text": "[TODO: tekst]"
                 }
             ]
