@@ -30,7 +30,7 @@ ernaast. Daarin uitsluitend `var(--...)`-tokens uit
 Vastgelegde keuze — **Vite multi-page build, geen router-library**.
 
 Elke publieke pagina is een eigen HTML-ingang (`index.html`,
-`over-ons.html`, `contact.html`, `privacyverklaring.html`,
+`over-ons.html`, `projecten.html`, `contact.html`, `privacyverklaring.html`,
 `algemene-voorwaarden.html`). Elk daarvan draagt zijn eigen `<title>` en
 `meta description` in de HTML zelf, waar een crawler ze zonder JavaScript
 leest — dat is precies wat §12 vraagt. Een SPA-router zou die titels naar

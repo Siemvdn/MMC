@@ -145,12 +145,81 @@ export interface CtaSection {
   buttonLabel: string;
 }
 
+/** Eén lid van het collectief. */
+export interface Member {
+  name: string;
+  /** Mag leeg; dan valt die regel op de site weg. */
+  specialty: string;
+  /**
+   * De eigen site van het lid; leeg betekent geen link. De server laat alleen
+   * http(s) door, en de frontend controleert dat nog een keer voordat hij er
+   * een link van maakt (`utils/safeWebsite.ts`).
+   */
+  website: string;
+  image: string | null;
+  imageAlt: string;
+}
+
+export interface MembersSection {
+  type: 'members';
+  background: SectionBackground;
+  heading: string;
+  intro: string;
+  members: Member[];
+}
+
+/** Eén project. Alleen de titel is verplicht. */
+export interface Project {
+  title: string;
+  /** Gewone tekst en geen koppeling aan een lid: die zou breken als een lid vertrekt. */
+  maker: string;
+  category: string;
+  description: string;
+  image: string | null;
+  imageAlt: string;
+}
+
+/** De projecten; het eerste wordt groot getoond als uitgelicht project. */
+export interface ProjectsSection {
+  type: 'projects';
+  background: SectionBackground;
+  heading: string;
+  intro: string;
+  projects: Project[];
+}
+
+/** Waar een vooruitblik zijn items vandaan haalt. */
+export type TeaserSource = 'members' | 'projects';
+
+/**
+ * Een vooruitblik op de leden of de projecten.
+ *
+ * Bevat zelf geen items maar verwijst naar de pagina waar ze staan. Zo
+ * bestaan de gegevens op één plek, en verschijnt een nieuw lid vanzelf ook
+ * op de homepage.
+ */
+export interface TeaserSection {
+  type: 'teaser';
+  background: SectionBackground;
+  heading: string;
+  source: TeaserSource;
+  linkLabel: string;
+}
+
 /**
  * Een discriminated union op `type`. Daardoor weet TypeScript in elke tak van
  * een switch precies welke velden bestaan, en klaagt hij zodra er een
  * sectietype bijkomt dat nergens afgehandeld wordt.
  */
-export type ContentSection = HeroSection | ProseSection | QuoteSection | ListSection | CtaSection;
+export type ContentSection =
+  | HeroSection
+  | ProseSection
+  | QuoteSection
+  | ListSection
+  | CtaSection
+  | MembersSection
+  | ProjectsSection
+  | TeaserSection;
 
 /** De gegevens die op élke pagina terugkomen, uit site.json. */
 export interface SiteContent {

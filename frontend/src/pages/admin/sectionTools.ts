@@ -19,19 +19,26 @@ export const SECTION_LABELS: Record<SectionType, string> = {
   quote: 'Citaat',
   list: 'Lijst met items',
   cta: 'Blok met knop',
+  members: 'Leden',
+  projects: 'Projecten',
+  teaser: 'Vooruitblik',
 };
 
 /**
  * De sectietypes die de beheerder zelf mag toevoegen.
  *
- * Bewust niet alle vijf. `cta` — het blok met de knop — valt af omdat die
+ * Bewust niet allemaal. `cta` — het blok met de knop — valt af omdat die
  * knop altijd naar de contactpagina wijst: op een site van drie pagina's is
  * dat de enige zinnige bestemming, maar een blok kunnen toevoegen waarvan je
  * de knop niet kunt richten is verwarrend. En `hero` valt af omdat een
  * pagina er hoogstens één heeft, bovenaan; een tweede halverwege de pagina
  * levert een reusachtige kop op waar een gewone kop hoort.
  *
- * Bestaande secties van die twee soorten blijven gewoon te bewerken en te
+ * `members` en `projects` vallen af om dezelfde reden als `hero`: ze horen
+ * één keer op hun eigen pagina. En `teaser` verwijst naar die twee, dus hoort
+ * hij op een vaste plek op de homepage en niet overal.
+ *
+ * Bestaande secties van die soorten blijven gewoon te bewerken en te
  * verwijderen — ze zijn alleen niet nieuw aan te maken.
  */
 export const ADDABLE_SECTION_TYPES = ['prose', 'quote', 'list'] as const;
@@ -85,6 +92,12 @@ export function blankSection(type: SectionType): AdminSection {
       return { type, background, heading: '', intro: '', variant: 'cards', items: [] };
     case 'cta':
       return { type, background, heading: '', text: '', buttonLabel: '' };
+    case 'members':
+      return { type, background, heading: '', intro: '', members: [] };
+    case 'projects':
+      return { type, background, heading: '', intro: '', projects: [] };
+    case 'teaser':
+      return { type, background, heading: '', source: 'members', linkLabel: '' };
   }
 }
 
@@ -97,36 +110,41 @@ export function removeSection(sections: AdminSection[], index: number): AdminSec
 }
 
 /**
- * Verplaatst een sectie één plek omhoog of omlaag.
+ * Verplaatst een item één plek omhoog of omlaag: een sectie, een lid of een
+ * project.
  *
- * Aan de randen gebeurt er niets, in plaats van dat de sectie naar de andere
+ * Aan de randen gebeurt er niets, in plaats van dat het item naar de andere
  * kant springt — dat laatste zou een verrassing zijn bij een misklik.
  */
-export function moveSection(
-  sections: AdminSection[],
-  index: number,
-  direction: -1 | 1,
-): AdminSection[] {
+export function moveItem<T>(items: T[], index: number, direction: -1 | 1): T[] {
   const target = index + direction;
 
-  if (index < 0 || index >= sections.length || target < 0 || target >= sections.length) {
-    return sections;
+  if (index < 0 || index >= items.length || target < 0 || target >= items.length) {
+    return items;
   }
 
-  const moved = [...sections];
+  const moved = [...items];
   const current = moved[index];
   const other = moved[target];
 
   // `noUncheckedIndexedAccess` staat aan, dus beide kunnen in theorie
   // ontbreken; de controle hierboven sluit dat feitelijk al uit.
   if (current === undefined || other === undefined) {
-    return sections;
+    return items;
   }
 
   moved[index] = other;
   moved[target] = current;
 
   return moved;
+}
+
+export function moveSection(
+  sections: AdminSection[],
+  index: number,
+  direction: -1 | 1,
+): AdminSection[] {
+  return moveItem(sections, index, direction);
 }
 
 export function replaceSection(

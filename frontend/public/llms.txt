@@ -14,6 +14,7 @@
 
 - [Home](https://[TODO-domein]/): [TODO: wat er op deze pagina staat]
 - [Over ons](https://[TODO-domein]/over-ons): [TODO: wat er op deze pagina staat]
+- [Projecten](https://[TODO-domein]/projecten): [TODO: wat er op deze pagina staat]
 - [Contact](https://[TODO-domein]/contact): contactformulier.
 - [Privacyverklaring](https://[TODO-domein]/privacyverklaring): hoe er met gegevens uit het contactformulier wordt omgegaan.
 - [Algemene voorwaarden](https://[TODO-domein]/algemene-voorwaarden): [TODO: wat er op deze pagina staat]

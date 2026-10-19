@@ -19,7 +19,7 @@ export default defineConfig({
   plugins: [react(), cleanUrls(), contentMeta(), seoTags()],
 
   /**
-   * Deze site is geen single-page app maar drie losse HTML-bestanden. Zonder
+   * Deze site is geen single-page app maar losse HTML-bestanden, één per pagina. Zonder
    * deze regel valt de dev-server bij een onbekend adres terug op index.html
    * en krijg je een 200 met de homepage, terwijl de .htaccess in productie
    * netjes een 404 geeft. Dat verschil zou pas ná een deploy opvallen.
@@ -92,7 +92,7 @@ export default defineConfig({
     sourcemap: false,
 
     rollupOptions: {
-      // Drie ingangen, dus drie HTML-bestanden in dist/. Elk draagt zijn eigen
+      // Eén ingang per pagina, dus één HTML-bestand per pagina in dist/. Elk draagt zijn eigen
       // <title> en meta description in de HTML, waar een crawler ze zonder
       // JavaScript leest (CLAUDE.md §12).
       input: {

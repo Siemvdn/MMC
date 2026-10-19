@@ -4,6 +4,7 @@ import contactContent from '../backend/storage/content/contact.json';
 import homeContent from '../backend/storage/content/home.json';
 import aboutContent from '../backend/storage/content/over-ons.json';
 import privacyContent from '../backend/storage/content/privacy.json';
+import projectsContent from '../backend/storage/content/projecten.json';
 import siteContent from '../backend/storage/content/site.json';
 import termsContent from '../backend/storage/content/terms.json';
 import { SITE_LOCALE, SITE_ORIGIN, SOCIAL_IMAGE_PATH } from './src/constants/site';
@@ -21,6 +22,7 @@ import { ROUTES, type PageSlug, type RouteDefinition } from './src/constants/rou
 const META_BY_SLUG: Record<PageSlug, { title: string; description: string }> = {
   home: homeContent.meta,
   'over-ons': aboutContent.meta,
+  projecten: projectsContent.meta,
   contact: contactContent.meta,
   privacy: privacyContent.meta,
   terms: termsContent.meta,

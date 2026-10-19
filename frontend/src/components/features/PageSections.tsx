@@ -15,6 +15,10 @@ import type {
   ProseSection,
   QuoteSection,
 } from '../../types/content';
+import { MemberList } from './MemberList';
+import { ProjectList } from './ProjectList';
+import { sectionClass } from './sectionShared';
+import { Teaser } from './Teaser';
 import styles from './Sections.module.css';
 
 export interface PageSectionsProps {
@@ -105,6 +109,12 @@ function Section({
       return <List section={section} level={level} marker={marker} banded={banded} />;
     case 'cta':
       return <Cta section={section} level={level} marker={marker} banded={banded} />;
+    case 'members':
+      return <MemberList section={section} level={level} marker={marker} banded={banded} />;
+    case 'projects':
+      return <ProjectList section={section} level={level} marker={marker} banded={banded} />;
+    case 'teaser':
+      return <Teaser section={section} level={level} marker={marker} banded={banded} />;
   }
 }
 
@@ -436,13 +446,4 @@ function Cta({
       </Container>
     </section>
   );
-}
-
-/** De opmaakklasse van een sectie, met of zonder getinte achtergrond. */
-/**
- * @param banded Of deze sectie het getinte vlak krijgt. Komt uit de
- *        content: de beheerder kiest het per sectie.
- */
-function sectionClass(banded: boolean): string {
-  return banded ? `${styles.section} ${styles.band}` : (styles.section ?? '');
 }

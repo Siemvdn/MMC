@@ -1,0 +1,25 @@
+.frame {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-card);
+  background: var(--color-photo-empty);
+  object-fit: cover;
+}
+
+.portrait {
+  aspect-ratio: var(--ratio-portrait);
+}
+
+.landscape {
+  aspect-ratio: var(--ratio-landscape);
+}
+
+.wide {
+  aspect-ratio: var(--ratio-wide);
+}
+
+/* Geen foto: het vlak houdt de maat vast, zodat het raster recht blijft. */
+.empty {
+  border: 1px solid var(--color-divider);
+}

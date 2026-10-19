@@ -94,6 +94,14 @@ export function ManualTasks() {
           In een <strong>Lijst met items</strong> voegt u een regel toe met{' '}
           <strong>Item toevoegen</strong>. Elke regel heeft een titel en een tekst.
         </p>
+        <p>
+          In het blok <strong>Leden</strong> (pagina Over ons) en het blok{' '}
+          <strong>Projecten</strong> werkt het net zo, met <strong>Lid toevoegen</strong> en{' '}
+          <strong>Project toevoegen</strong>. Ook elk lid en elk project heeft pijltjes, en die
+          volgorde doet ertoe: de eerste vier leden en de eerste drie projecten staan ook op de
+          homepage, en het bovenste project staat groot als uitgelicht project. Een eigen website
+          van een lid vult u volledig in, beginnend met <strong>https://</strong>.
+        </p>
 
         <h3>Weghalen</h3>
         <p>
@@ -106,8 +114,9 @@ export function ManualTasks() {
           Dan komt de laatst opgeslagen versie terug.
         </Warning>
         <Tip>
-          De grote kop bovenaan elke pagina en het blok met de knop onderaan kunt u wel aanpassen of
-          weghalen, maar niet opnieuw toevoegen. Verwijder ze dus alleen als u het zeker weet.
+          De grote kop bovenaan elke pagina, het blok met de knop onderaan, en de blokken Leden,
+          Projecten en Vooruitblik kunt u wel aanpassen of weghalen, maar niet opnieuw toevoegen.
+          Verwijder ze dus alleen als u het zeker weet.
         </Tip>
 
         <h3>Uiterlijk van een blok</h3>

@@ -1,13 +1,12 @@
 # Meubelmakers Collectief Zeist — website
 
-Een beheerbare presentatiewebsite: drie pagina's in de hoofdnavigatie (Home,
-Over ons, Contact), een privacyverklaring en algemene voorwaarden in de
-footer, en een beveiligd beheer waarin de klant zelf teksten, foto's en
+Een beheerbare presentatiewebsite: vier pagina's in de hoofdnavigatie (Home,
+Over ons met de leden, Projecten, Contact), een privacyverklaring en
+algemene voorwaarden in de footer, en een beveiligd beheer waarin de klant zelf teksten, foto's en
 bedrijfsgegevens aanpast.
 
-**Dit is een merkloze starter.** De functionele basis werkt en is getest;
-design en klantcontent ontbreken nog bewust. Overal waar die horen staat
-`[TODO: …]`:
+De functionele basis en het design werken en zijn getest; de klantcontent
+ontbreekt nog bewust. Overal waar die hoort staat `[TODO: …]`:
 
 ```bash
 grep -rn "TODO" --exclude-dir=node_modules .

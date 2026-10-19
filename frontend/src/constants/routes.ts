@@ -8,7 +8,7 @@
  */
 
 /** De slug zoals de backend hem kent: `GET /api/content/{page}`. */
-export type PageSlug = 'home' | 'over-ons' | 'contact' | 'privacy' | 'terms';
+export type PageSlug = 'home' | 'over-ons' | 'projecten' | 'contact' | 'privacy' | 'terms';
 
 export interface RouteDefinition {
   /** Waar de pagina staat, zonder extensie. */
@@ -32,6 +32,7 @@ export interface RouteDefinition {
 export const ROUTES: readonly RouteDefinition[] = [
   { path: '/', htmlFile: 'index.html', slug: 'home', label: 'Home' },
   { path: '/over-ons', htmlFile: 'over-ons.html', slug: 'over-ons', label: 'Over ons' },
+  { path: '/projecten', htmlFile: 'projecten.html', slug: 'projecten', label: 'Projecten' },
   {
     path: '/contact',
     htmlFile: 'contact.html',

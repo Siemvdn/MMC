@@ -4,6 +4,7 @@ import contactContent from '../backend/storage/content/contact.json';
 import homeContent from '../backend/storage/content/home.json';
 import aboutContent from '../backend/storage/content/over-ons.json';
 import privacyContent from '../backend/storage/content/privacy.json';
+import projectsContent from '../backend/storage/content/projecten.json';
 import termsContent from '../backend/storage/content/terms.json';
 import { ADMIN_HTML_FILE, ADMIN_PATH } from './src/constants/admin';
 import { PREVIEW_HTML_FILE, PREVIEW_PATH } from './src/constants/preview';
@@ -17,7 +18,7 @@ import { ROUTES, type PageSlug } from './src/constants/routes';
 /**
  * Laat de dev-server `/over-ons` serveren in plaats van `/over-ons.html`.
  *
- * De site bestaat uit drie losse HTML-bestanden. In productie zorgt de
+ * De site bestaat uit losse HTML-bestanden, één per pagina. In productie zorgt de
  * `.htaccess` ervoor dat de schone URL bij het juiste bestand uitkomt; de
  * dev-server doet dat niet uit zichzelf. Zonder dit stukje zou je lokaal een
  * andere URL gebruiken dan op de server, en dat is precies het soort verschil
@@ -59,6 +60,7 @@ export function cleanUrls(): Plugin {
 const CONTENT_BY_SLUG: Record<PageSlug, { meta: { title: string; description: string } }> = {
   home: homeContent,
   'over-ons': aboutContent,
+  projecten: projectsContent,
   contact: contactContent,
   privacy: privacyContent,
   terms: termsContent,
@@ -69,7 +71,7 @@ const CONTENT_BY_SLUG: Record<PageSlug, { meta: { title: string; description: st
  *
  * ## Waarom dit bestaat
  *
- * De site bestaat uit drie statische HTML-bestanden, juist zodat een crawler
+ * De site bestaat uit statische HTML-bestanden, juist zodat een crawler
  * de titel ziet zonder JavaScript uit te voeren (CLAUDE.md §12). Maar de
  * titels stonden daarmee op twee plekken: in de HTML én in `meta` in de
  * content-JSON. Twee plekken die hetzelfde beweren, lopen vroeg of laat uit

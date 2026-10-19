@@ -4,6 +4,7 @@ import { Choice } from '../../components/ui/Choice';
 import { Field } from '../../components/ui/Field';
 import { useImageUpload } from '../../hooks/useImageUpload';
 import { ImageField } from './ImageField';
+import { MembersFields, ProjectsFields, TeaserFields } from './CollectionFields';
 import type { AdminSection } from '../../types/adminContent';
 import type { PageSlug } from '../../constants/routes';
 import type {
@@ -53,6 +54,7 @@ const IMAGE_POSITION_LABELS: Record<string, string> = {
 const TARGET_LABELS: Record<string, string> = {
   home: 'Home',
   'over-ons': 'Over ons',
+  projecten: 'Projecten',
   contact: 'Contact',
 };
 
@@ -440,6 +442,42 @@ function Fields({ section, fieldId, csrfToken, limits, choices, onChange }: Fiel
             }}
           />
         </>
+      );
+
+    case 'members':
+      return (
+        <MembersFields
+          section={section}
+          fieldId={fieldId}
+          csrfToken={csrfToken}
+          limits={limits}
+          choices={choices}
+          onChange={onChange}
+        />
+      );
+
+    case 'projects':
+      return (
+        <ProjectsFields
+          section={section}
+          fieldId={fieldId}
+          csrfToken={csrfToken}
+          limits={limits}
+          choices={choices}
+          onChange={onChange}
+        />
+      );
+
+    case 'teaser':
+      return (
+        <TeaserFields
+          section={section}
+          fieldId={fieldId}
+          csrfToken={csrfToken}
+          limits={limits}
+          choices={choices}
+          onChange={onChange}
+        />
       );
   }
 }

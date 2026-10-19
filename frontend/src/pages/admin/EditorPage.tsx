@@ -38,6 +38,7 @@ const MANUAL_PAGE = 'handleiding';
 const DOCUMENTS = [
   { page: 'home', label: 'Home' },
   { page: 'over-ons', label: 'Over ons' },
+  { page: 'projecten', label: 'Projecten' },
   { page: 'contact', label: 'Contact' },
   { page: 'privacy', label: 'Privacyverklaring' },
   { page: 'terms', label: 'Algemene voorwaarden' },

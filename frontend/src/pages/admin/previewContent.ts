@@ -62,6 +62,7 @@ function isPageSlug(value: string): value is PageSlug {
   return (
     value === 'home' ||
     value === 'over-ons' ||
+    value === 'projecten' ||
     value === 'contact' ||
     value === 'privacy' ||
     value === 'terms'

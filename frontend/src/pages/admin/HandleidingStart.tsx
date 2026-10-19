@@ -95,9 +95,17 @@ export function ManualStart() {
         <PartsTable
           rows={[
             ['1. Kop van de pagina', TODO_BLOCK],
-            ['2. Lijst met items (kaarten)', TODO_BLOCK],
+            ['2. Tekstblok', TODO_BLOCK],
             ['3. Lijst met items (stappen)', TODO_BLOCK],
-            ['4. Blok met knop', TODO_BLOCK],
+            [
+              '4. Vooruitblik',
+              'De eerste vier leden. Die past u aan op de pagina Over ons, niet hier.',
+            ],
+            [
+              '5. Vooruitblik',
+              'De eerste drie projecten. Die past u aan op de pagina Projecten, niet hier.',
+            ],
+            ['6. Blok met knop', TODO_BLOCK],
           ]}
         />
 
@@ -105,10 +113,17 @@ export function ManualStart() {
         <PartsTable
           rows={[
             ['1. Kop van de pagina', TODO_BLOCK],
-            ['2. Tekstblok', TODO_BLOCK],
-            ['3. Citaat', TODO_BLOCK],
-            ['4. Lijst met items (tijdlijn)', TODO_BLOCK],
-            ['5. Blok met knop', TODO_BLOCK],
+            ['2. Leden', 'Alle leden, elk met foto, naam en eventueel een eigen website'],
+            ['3. Blok met knop', TODO_BLOCK],
+          ]}
+        />
+
+        <h3>Projecten</h3>
+        <PartsTable
+          rows={[
+            ['1. Kop van de pagina', TODO_BLOCK],
+            ['2. Projecten', 'Alle projecten; het bovenste staat groot als uitgelicht project'],
+            ['3. Blok met knop', TODO_BLOCK],
           ]}
         />
 
