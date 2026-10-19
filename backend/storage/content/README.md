@@ -1,12 +1,12 @@
 # Content-JSON's
 
-Eén bestand per pagina — `home.json`, `over-ons.json`, `contact.json`,
-`privacy.json`, `terms.json` — plus `site.json` voor wat op álle pagina's
+Eén bestand per pagina — `home.json`, `over-ons.json`, `projecten.json`,
+`contact.json`, `privacy.json`, `terms.json` — plus `site.json` voor wat op álle pagina's
 terugkomt. Deze map staat buiten de webroot en is dus niet via de browser op
 te vragen (CLAUDE.md §10).
 
 `privacy.json` (privacyverklaring, §15) en `terms.json`
-(algemene voorwaarden) zijn gewone pagina's zoals de andere drie — zelfde
+(algemene voorwaarden) zijn gewone pagina's zoals de andere vier — zelfde
 sectiesysteem, zelfde Validator — maar staan bewust niet in de
 hoofdnavigatie, alleen in de footer.
 
@@ -56,7 +56,9 @@ als binnen één sectie (geldt alleen voor die sectie).
 
 ## Sectietypes
 
-Vijf types, bewust weinig. Elk type heeft een vaste set velden.
+Acht types, bewust weinig. Elk type heeft een vaste set velden. De eerste
+vijf zijn algemeen; `members`, `projects` en `teaser` horen bij de leden- en
+projectenpagina en de vooruitblikken daarop.
 
 ### `background` — bij elk type
 Elke sectie heeft `background`: `light` (de gewone achtergrond van de
@@ -95,7 +97,7 @@ De tekstkleur is een keuze en geen berekening: of wit of zwart leesbaar is
 hangt af van wat er toevallig op de foto staat.
 
 Elke knop in `actions` heeft `label` (de tekst, hoogstens 40 tekens) en
-`target` — een van `home`, `over-ons` of `contact`. Bewust een pagina van deze
+`target` — een van `home`, `over-ons`, `projecten` of `contact`. Bewust een pagina van deze
 site en geen vrij adres: dat scheelt het intypen van een URL, en daarmee de
 meest gemaakte fout. De eerste knop wordt opvallend weergegeven, de tweede
 rustig; twee even opvallende knoppen maken van één duidelijke vervolgstap
@@ -158,13 +160,75 @@ er op een telefoon geen leesbare tekst meer naast elk punt.
 | `intro` | string | Mag leeg zijn |
 | `items` | array | Elk item heeft `title` en `text` |
 
-Een lege `items`-array is geldig en betekent: nog niet aangeleverd. De
-frontend rendert de sectie dan niet.
+Een lege `items`-array is geldig en betekent: nog niet aangeleverd (zie
+"Lege lijsten" hieronder).
 
 ### `cta`
 Het afsluitende blok met een knop.
 
 Velden: `heading`, `text`, `buttonLabel`.
+
+### `members`
+De leden van het collectief, op de Over ons-pagina.
+
+Velden: `heading`, `intro` (mag leeg), `members`.
+
+Elk lid in `members` (hoogstens 40):
+
+| Veld | Type | Toelichting |
+|---|---|---|
+| `name` | string | Verplicht, niet leeg |
+| `specialty` | string | Mag leeg; dan valt die regel weg |
+| `website` | string | Leeg = geen link. Gevuld: een volledig adres dat begint met `https://` of `http://` |
+| `image` | string of `null` | Portretfoto, pad onder `/uploads/` |
+| `imageAlt` | string | Verplicht zodra `image` gevuld is (§14) |
+
+Het webadres is het enige vrij in te vullen adres in de content. Daarom
+alleen `http`/`https`: een `javascript:`-adres in een link is een XSS-lek
+(CLAUDE.md §11). De frontend controleert dat nog een keer voordat hij de link
+toont, en opent hem in een nieuw tabblad met `rel="noopener noreferrer"`.
+
+De volgorde is de volgorde op de site. De eerste vier staan ook in de
+vooruitblik op de homepage.
+
+### `projects`
+De projecten van de leden, op de Projecten-pagina.
+
+Velden: `heading`, `intro` (mag leeg), `projects`.
+
+Elk project in `projects` (hoogstens 30):
+
+| Veld | Type | Toelichting |
+|---|---|---|
+| `title` | string | Verplicht, niet leeg |
+| `maker` | string | Mag leeg. Gewone tekst en geen koppeling aan een lid: die zou breken zodra een lid vertrekt |
+| `category` | string | Soort project, mag leeg |
+| `description` | string | Korte beschrijving, hoogstens 600 tekens, mag leeg |
+| `image` | string of `null` | Pad onder `/uploads/` |
+| `imageAlt` | string | Verplicht zodra `image` gevuld is (§14) |
+
+Het eerste project wordt groot getoond als uitgelicht project, met zijn
+beschrijving ernaast; de rest staat als kaarten eronder. Een ander project
+uitlichten is dus: het bovenaan zetten. De eerste drie staan ook in de
+vooruitblik op de homepage.
+
+### `teaser`
+Een vooruitblik op de leden of de projecten, bijvoorbeeld op de homepage.
+
+Velden: `heading`, `source`, `linkLabel`.
+
+`source` is `members` (de eerste vier leden uit `over-ons.json`) of
+`projects` (de eerste drie projecten uit `projecten.json`). De sectie bevat
+zelf geen items, alleen die verwijzing: zo staan de gegevens op één plek, en
+verschijnt een nieuw lid vanzelf ook op de homepage. De frontend haalt de
+items op via `GET /api/content/{page}`; is de lijst daar leeg, dan toont hij
+de vooruitblik niet. `linkLabel` is de tekst op de link naar die pagina
+(hoogstens 40 tekens).
+
+### Lege lijsten
+Een `list` zonder items, een `members` zonder leden en een `projects` zonder
+projecten zijn geldig en betekenen: nog niet aangeleverd. De publieke API
+laat zo'n sectie weg, zodat er geen kop zonder inhoud op de site staat.
 
 ## `site.json` — wat op elke pagina terugkomt
 

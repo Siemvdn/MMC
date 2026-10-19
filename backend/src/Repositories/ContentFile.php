@@ -16,6 +16,7 @@ enum ContentFile: string
 {
     case Home = 'home';
     case About = 'over-ons';
+    case Projects = 'projecten';
     case Contact = 'contact';
     case Privacy = 'privacy';
     case Terms = 'terms';

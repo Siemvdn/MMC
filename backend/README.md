@@ -79,7 +79,7 @@ de reden staat in `src/Http/README.md`.
 
 | Methode | Adres | Toegang | Doel |
 |---|---|---|---|
-| GET | `/api/content/{page}` | publiek | content van `home`, `over-ons`, `contact`, `privacy` of `terms`, plus `site` |
+| GET | `/api/content/{page}` | publiek | content van `home`, `over-ons`, `projecten`, `contact`, `privacy` of `terms`, plus `site` |
 | GET | `/api/contact/token` | publiek | ondertekend CSRF-token voor het contactformulier (geen sessie, geen cookie) |
 | POST | `/api/contact` | publiek | contactformulier versturen per e-mail; rate limited |
 | GET | `/api/admin/session` | sessie | inlogstatus plus CSRF-token voor het beheer |

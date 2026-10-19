@@ -49,9 +49,13 @@ final class FieldValidator
         'layout' => ['beside', 'banner'],
         'textColor' => ['dark', 'light'],
         // Waar een knop heen wijst. Bewust de eigen pagina's en geen vrij in
-        // te vullen adres: de site telt drie pagina's, en een vrij veld levert
+        // te vullen adres: de site telt vier pagina's, en een vrij veld levert
         // alleen kapotte links op (§12).
-        'target' => ['home', 'over-ons', 'contact'],
+        'target' => ['home', 'over-ons', 'projecten', 'contact'],
+        // Waar een vooruitblik zijn items vandaan haalt: de leden van de
+        // Over ons-pagina of de projecten van de Projecten-pagina. Een
+        // verwijzing en geen kopie, zodat ze niet uit elkaar kunnen lopen.
+        'source' => ['members', 'projects'],
         // De achtergrond van een sectie: de gewone achtergrond van de pagina,
         // of een getint vlak. Per sectie te kiezen, zodat de beheerder
         // zelf het ritme van de pagina bepaalt.
@@ -104,6 +108,17 @@ final class FieldValidator
         'supportingText' => 200,
         'imageAlt' => 200,
         'buttonLabel' => 60,
+        // De tekst op de link onder een vooruitblik, net zo kort als een knop.
+        'linkLabel' => 40,
+        // Een lid en een project (EntryListValidator).
+        'name' => 100,
+        'specialty' => 100,
+        'website' => 200,
+        'maker' => 100,
+        'category' => 60,
+        // Een korte beschrijving bij een project, geen verhaal: hij staat in
+        // een kaart en bij het uitgelichte project naast de foto.
+        'description' => 600,
     ];
 
     private const DEFAULT_MAX_LENGTH = 200;

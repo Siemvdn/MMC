@@ -8,7 +8,7 @@ Dit bestand wordt bij elke prompt gelezen. Het legt vast hoe code in dit project
 
 ## 1. Projectcontext
 
-- **Wat**: marketingwebsite met 3 pagina's in de hoofdnavigatie — **Home**, **Over ons**, **Contact** — voor **Meubelmakers Collectief Zeist**, plus een beveiligd admin-gedeelte waarmee de klant zelf teksten en foto's op deze pagina's kan aanpassen. Geen boekingssysteem, geen bezoekersaccounts, geen betalingen — puur een beheerbare presentatiewebsite. Daarnaast zijn er CMS-bewerkbare pagina's die bewust buiten de hoofdnavigatie staan en alleen via de footer bereikbaar zijn: de privacyverklaring (§15) en de algemene voorwaarden.
+- **Wat**: marketingwebsite met 4 pagina's in de hoofdnavigatie — **Home**, **Over ons** (de leden van het collectief), **Projecten**, **Contact** — voor **Meubelmakers Collectief Zeist**, plus een beveiligd admin-gedeelte waarmee de klant zelf teksten en foto's op deze pagina's kan aanpassen. Geen boekingssysteem, geen bezoekersaccounts, geen betalingen — puur een beheerbare presentatiewebsite. Daarnaast zijn er CMS-bewerkbare pagina's die bewust buiten de hoofdnavigatie staan en alleen via de footer bereikbaar zijn: de privacyverklaring (§15) en de algemene voorwaarden.
 - **Wie de klant is**: [TODO: korte omschrijving van het collectief — alleen bevestigde feiten, zie §2].
 - **Doelgroep**: [TODO: doelgroep]. Werkaanname tot die bevestigd is: potentiële klanten die lokaal zoeken — conversie en vindbaarheid (SEO) zijn dan net zo belangrijk als de techniek.
 - **Opdrachtgever**: echte, betalende klant. Dit is geen leerproject — kwaliteit, veiligheid en betrouwbaarheid gaan boven snelheid.
@@ -28,12 +28,14 @@ Markeer elk feit als ✅ **Bevestigd** of ⏳ **Nog niet bevestigd — niet gebr
 - [TODO: welke diensten het collectief aanbiedt.]
 
 ### Positionering
-- [TODO: hoe het collectief zich positioneert; wat wel en niet in de publieke communicatie hoort.]
+- ✅ **Bevestigd** — De site is geen verkoopkanaal: projecten worden getoond als voorbeelden van werk, niet te koop aangeboden. Wat de leden vooral willen, is laten zien wie er in het collectief zitten. (Doorgegeven door de ontwikkelaar, 19 oktober 2026.)
+- [TODO: verdere positionering; wat wel en niet in de publieke communicatie hoort.]
 
 ### Prijzen
 - [TODO: of en hoe prijzen op de site komen.]
 
 ### Achtergrond ("Over ons")
+- ✅ **Bevestigd** — De Over ons-pagina toont alle leden: foto, naam en, als een lid die heeft, een link naar de eigen website. (Doorgegeven door de ontwikkelaar, 19 oktober 2026.)
 - [TODO: bevestigde feiten over het collectief en de makers.]
 - Schrijf de tekst voorlopig kort en feitelijk, uitsluitend gebaseerd op bevestigde punten. Geen persoonlijke details of anekdotes verzinnen die niet expliciet zijn aangeleverd — die komen er later bij als de klant zelf via de CMS aanvult of corrigeert.
 
@@ -122,7 +124,7 @@ project-root/
 │   │   ├── Config/             # env-loader, paden
 │   │   └── Utils/
 │   ├── storage/
-│   │   └── content/            # home.json, over-ons.json, contact.json, … — NIET publiek toegankelijk
+│   │   └── content/            # home.json, over-ons.json, projecten.json, contact.json, … — NIET publiek toegankelijk
 │   ├── tools/                  # hash-password.php (en lokaal phpunit.phar)
 │   ├── .env.example            # nooit .env zelf committen
 │   └── tests/
@@ -202,7 +204,7 @@ project-root/
 
 | Methode | Endpoint | Toegang | Doel |
 |---|---|---|---|
-| GET | `/api/content/{page}` | publiek | content van `home`, `over-ons`, `contact`, `privacy` of `terms` ophalen, plus `site` |
+| GET | `/api/content/{page}` | publiek | content van `home`, `over-ons`, `projecten`, `contact`, `privacy` of `terms` ophalen, plus `site` |
 | GET | `/api/contact/token` | publiek | CSRF-token voor het contactformulier ophalen (ondertekend met `APP_SECRET`, geen sessie/cookie — zie §11) |
 | POST | `/api/contact` | publiek | contactformulier versturen (per e-mail, zie §10) |
 | GET | `/api/admin/session` | publiek | inlogstatus plus CSRF-token voor het beheer |
@@ -219,8 +221,9 @@ project-root/
 
 Er is bewust gekozen voor JSON-bestanden in plaats van een database (afweging in §3). Regels:
 
-- **Eén JSON-bestand per pagina**: `home.json`, `over-ons.json`, `contact.json`, `privacy.json` en `terms.json` in `backend/storage/content/` — buiten de webroot, dus niet direct via de browser op te vragen. Daarnaast één sitebreed `site.json` (bedrijfsnaam, NAP-gegevens, `sameAs`-links): die gegevens staan in de footer op élke pagina en voeden het `LocalBusiness`-schema, en §12 eist dat ze exact gelijk zijn aan het Google Business Profile — met één bron kunnen ze niet uit elkaar gaan lopen.
-- **Getypeerde secties** (besloten): elke sectie heeft een `type`-veld met één van vijf waarden — `hero`, `prose`, `quote`, `list`, `cta` — en per type een vaste set velden, plus `background` (`light` of `tinted`). Reden: een platte vorm `{heading, text, image}` kan een lijst diensten en de knoptekst op de homepage niet uitdrukken zonder ze tot één alinea plat te slaan. Het blijft één array, dus het CMS kan er gewoon doorheen lopen. Daarnaast heeft elk paginabestand een `meta`-blok met `title` en `description`, die §12 verplicht stelt. De volledige beschrijving staat in `backend/storage/content/README.md` en is leidend voor de Validator.
+- **Eén JSON-bestand per pagina**: `home.json`, `over-ons.json`, `projecten.json`, `contact.json`, `privacy.json` en `terms.json` in `backend/storage/content/` — buiten de webroot, dus niet direct via de browser op te vragen. Daarnaast één sitebreed `site.json` (bedrijfsnaam, NAP-gegevens, `sameAs`-links): die gegevens staan in de footer op élke pagina en voeden het `LocalBusiness`-schema, en §12 eist dat ze exact gelijk zijn aan het Google Business Profile — met één bron kunnen ze niet uit elkaar gaan lopen.
+- **Getypeerde secties** (besloten): elke sectie heeft een `type`-veld met één van acht waarden — `hero`, `prose`, `quote`, `list`, `cta`, `members`, `projects`, `teaser` — en per type een vaste set velden, plus `background` (`light` of `tinted`). Reden: een platte vorm `{heading, text, image}` kan een lijst diensten en de knoptekst op de homepage niet uitdrukken zonder ze tot één alinea plat te slaan. Het blijft één array, dus het CMS kan er gewoon doorheen lopen. Daarnaast heeft elk paginabestand een `meta`-blok met `title` en `description`, die §12 verplicht stelt. De volledige beschrijving staat in `backend/storage/content/README.md` en is leidend voor de Validator.
+- **Leden en projecten staan op één plek** (besloten): `members` staat in `over-ons.json`, `projects` in `projecten.json`. De vooruitblikken op de homepage (`teaser`) bevatten geen kopie maar verwijzen ernaar, en de frontend haalt de eerste vier leden of drie projecten op van die pagina. Het eigen webadres van een lid is het enige vrij in te vullen adres in de content: alleen `http(s)`, gecontroleerd door de server én de frontend (§11).
 - **Het `meta`-blok is van de ontwikkelaar, niet van het CMS.** De `<title>` en meta description staan in de content-JSON als enige bron, en worden bij het bouwen in de HTML-bestanden gezet (`frontend/vite-plugins.ts`). Zo staan ze op één plek én ziet een crawler ze zonder JavaScript. Gevolg: een wijziging werkt pas na een nieuwe build en deploy, dus het CMS biedt alleen `sections` aan — een veld dat lijkt te werken maar niets verandert, is erger dan geen veld.
 - **Sleutels die met `_` beginnen worden nooit gerenderd.** JSON kent geen commentaar; `_todo` houdt een openstaand punt zichtbaar in het bestand waar het over gaat.
 - **Seeds**: de contentbestanden in de repo zijn seeds met `[TODO: …]` in elk tekstveld. De NAP-velden in `site.json` blijven leeg tot ze bevestigd zijn: leeg betekent voor de code "nog niet aangeleverd" (footer toont een plaatsvervanger, het schema wordt overgeslagen); een tijdelijke tekst zou als echt gegeven in het schema belanden.

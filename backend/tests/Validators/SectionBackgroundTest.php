@@ -114,6 +114,27 @@ final class SectionBackgroundTest extends TestCase
                 'text' => '',
                 'buttonLabel' => 'Neem contact op',
             ],
+            'members' => [
+                'type' => 'members',
+                'background' => $background,
+                'heading' => 'Kop',
+                'intro' => '',
+                'members' => [],
+            ],
+            'projects' => [
+                'type' => 'projects',
+                'background' => $background,
+                'heading' => 'Kop',
+                'intro' => '',
+                'projects' => [],
+            ],
+            'teaser' => [
+                'type' => 'teaser',
+                'background' => $background,
+                'heading' => 'Kop',
+                'source' => 'members',
+                'linkLabel' => 'Alle leden',
+            ],
         ];
     }
 }

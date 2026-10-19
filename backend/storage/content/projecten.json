@@ -1,0 +1,89 @@
+{
+    "_todo": [
+        "Alle teksten op deze pagina zijn plaatsvervangers. Gebruik alleen feiten die de klant heeft aangeleverd en die in CLAUDE.md §2 als bevestigd staan.",
+        "[TODO: meta.title en meta.description — uniek per pagina (CLAUDE.md §12).]",
+        "[TODO: de projecten — titel, foto en waar mogelijk de maker, het soort project en een korte beschrijving. Alleen foto's die de klant mag gebruiken (CLAUDE.md §2).]",
+        "Het eerste project staat groot bovenaan als uitgelicht project. De eerste drie staan daarnaast in de vooruitblik op de homepage."
+    ],
+    "meta": {
+        "title": "[TODO: paginatitel projecten]",
+        "description": "[TODO: meta description projecten]"
+    },
+    "sections": [
+        {
+            "type": "hero",
+            "background": "light",
+            "kicker": "[TODO: bovenkop]",
+            "heading": "[TODO: kop van de projectenpagina]",
+            "text": "[TODO: korte inleiding op de projecten]",
+            "image": null,
+            "imageAlt": "",
+            "layout": "beside",
+            "textColor": "dark",
+            "actions": []
+        },
+        {
+            "type": "projects",
+            "background": "light",
+            "heading": "[TODO: kop boven de projecten]",
+            "intro": "",
+            "projects": [
+                {
+                    "title": "[TODO: projectnaam 1]",
+                    "maker": "[TODO: naam lid]",
+                    "category": "[TODO: soort project, of leeg laten]",
+                    "description": "[TODO: korte beschrijving, of leeg laten]",
+                    "image": null,
+                    "imageAlt": ""
+                },
+                {
+                    "title": "[TODO: projectnaam 2]",
+                    "maker": "[TODO: naam lid]",
+                    "category": "[TODO: soort project, of leeg laten]",
+                    "description": "[TODO: korte beschrijving, of leeg laten]",
+                    "image": null,
+                    "imageAlt": ""
+                },
+                {
+                    "title": "[TODO: projectnaam 3]",
+                    "maker": "[TODO: naam lid]",
+                    "category": "[TODO: soort project, of leeg laten]",
+                    "description": "[TODO: korte beschrijving, of leeg laten]",
+                    "image": null,
+                    "imageAlt": ""
+                },
+                {
+                    "title": "[TODO: projectnaam 4]",
+                    "maker": "[TODO: naam lid]",
+                    "category": "[TODO: soort project, of leeg laten]",
+                    "description": "[TODO: korte beschrijving, of leeg laten]",
+                    "image": null,
+                    "imageAlt": ""
+                },
+                {
+                    "title": "[TODO: projectnaam 5]",
+                    "maker": "[TODO: naam lid]",
+                    "category": "[TODO: soort project, of leeg laten]",
+                    "description": "[TODO: korte beschrijving, of leeg laten]",
+                    "image": null,
+                    "imageAlt": ""
+                },
+                {
+                    "title": "[TODO: projectnaam 6]",
+                    "maker": "[TODO: naam lid]",
+                    "category": "[TODO: soort project, of leeg laten]",
+                    "description": "[TODO: korte beschrijving, of leeg laten]",
+                    "image": null,
+                    "imageAlt": ""
+                }
+            ]
+        },
+        {
+            "type": "cta",
+            "background": "light",
+            "heading": "[TODO: afsluitende kop]",
+            "text": "[TODO: uitnodiging om contact op te nemen]",
+            "buttonLabel": "[TODO: knoptekst]"
+        }
+    ]
+}

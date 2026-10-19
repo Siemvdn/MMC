@@ -17,8 +17,15 @@ use App\Repositories\ContentUnavailable;
  */
 final class ContentService
 {
-    /** Sectietypes waarvan een lege inhoud betekent: nog niet aangeleverd. */
-    private const LIST_TYPE = 'list';
+    /**
+     * Sectietypes waarvan een lege lijst betekent: nog niet aangeleverd. Per
+     * type het veld dat de lijst bevat.
+     */
+    private const LIST_FIELDS = [
+        'list' => 'items',
+        'members' => 'members',
+        'projects' => 'projects',
+    ];
 
     public function __construct(private readonly ContentRepository $repository)
     {
@@ -79,11 +86,12 @@ final class ContentService
     /**
      * Laat secties weg die nog geen inhoud hebben.
      *
-     * Nu geldt dat alleen voor een `list` zonder items — een lijst die nog
-     * wacht op inhoud van de klant. Zo'n sectie zou anders als kop zonder
-     * inhoud op de pagina staan.
+     * Dat geldt voor een `list` zonder items, en voor `members` en
+     * `projects` zonder leden of projecten — lijsten die nog wachten op
+     * inhoud van de klant. Zo'n sectie zou anders als kop zonder inhoud op
+     * de pagina staan.
      *
-     * Bewust smal gehouden: alleen dit ene, gedocumenteerde geval. Wie hier
+     * Bewust smal gehouden: alleen deze gedocumenteerde gevallen. Wie hier
      * een algemene "gooi lege dingen weg"-regel van maakt, krijgt secties die
      * onverwacht verdwijnen zodra de klant een veld leegmaakt.
      *
@@ -98,11 +106,13 @@ final class ContentService
         $filled = array_filter(
             $sections,
             static function (mixed $section): bool {
-                if (!is_array($section) || ($section['type'] ?? null) !== self::LIST_TYPE) {
+                $type = is_array($section) ? ($section['type'] ?? null) : null;
+
+                if (!is_string($type) || !array_key_exists($type, self::LIST_FIELDS)) {
                     return true;
                 }
 
-                return ($section['items'] ?? []) !== [];
+                return ($section[self::LIST_FIELDS[$type]] ?? []) !== [];
             },
         );
 

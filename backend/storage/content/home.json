@@ -1,7 +1,8 @@
 {
     "_todo": [
         "Alle teksten op deze pagina zijn plaatsvervangers. De echte inhoud komt van de klant en wordt vastgelegd in CLAUDE.md §2 voordat hij hier komt.",
-        "[TODO: meta.title en meta.description — uniek per pagina (CLAUDE.md §12). Werkt pas na een nieuwe build en deploy; het beheer biedt dit veld bewust niet aan.]"
+        "[TODO: meta.title en meta.description — uniek per pagina (CLAUDE.md §12). Werkt pas na een nieuwe build en deploy; het beheer biedt dit veld bewust niet aan.]",
+        "De twee vooruitblikken tonen de eerste vier leden uit over-ons.json en de eerste drie projecten uit projecten.json. Ze hebben zelf geen inhoud, alleen een kop en een linktekst."
     ],
     "meta": {
         "title": "[TODO: paginatitel home]",
@@ -21,55 +22,61 @@
             "actions": [
                 {
                     "label": "[TODO: knoptekst]",
-                    "target": "contact"
+                    "target": "over-ons"
                 },
                 {
                     "label": "[TODO: knoptekst]",
-                    "target": "over-ons"
+                    "target": "projecten"
                 }
             ]
+        },
+        {
+            "type": "prose",
+            "background": "tinted",
+            "heading": "[TODO: kop over het collectief]",
+            "text": "[TODO: korte tekst over het collectief]",
+            "image": null,
+            "imageAlt": "",
+            "imagePosition": "left"
         },
         {
             "type": "list",
             "background": "tinted",
-            "heading": "[TODO: kop boven de kaarten]",
-            "intro": "[TODO: korte intro]",
-            "variant": "cards",
-            "items": [
-                {
-                    "title": "[TODO: titel 1]",
-                    "text": "[TODO: tekst]"
-                },
-                {
-                    "title": "[TODO: titel 2]",
-                    "text": "[TODO: tekst]"
-                }
-            ]
-        },
-        {
-            "type": "list",
-            "background": "light",
-            "heading": "[TODO: kop boven de stappen]",
-            "intro": "[TODO: korte intro]",
+            "heading": "[TODO: kop boven de specialismen]",
+            "intro": "",
             "variant": "steps",
             "items": [
                 {
-                    "title": "[TODO: stap 1]",
-                    "text": "[TODO: tekst]"
+                    "title": "[TODO: specialisme 1]",
+                    "text": "[TODO: korte toelichting]"
                 },
                 {
-                    "title": "[TODO: stap 2]",
-                    "text": "[TODO: tekst]"
+                    "title": "[TODO: specialisme 2]",
+                    "text": "[TODO: korte toelichting]"
                 },
                 {
-                    "title": "[TODO: stap 3]",
-                    "text": "[TODO: tekst]"
+                    "title": "[TODO: specialisme 3]",
+                    "text": "[TODO: korte toelichting]"
                 }
             ]
         },
         {
-            "type": "cta",
+            "type": "teaser",
+            "background": "light",
+            "heading": "[TODO: kop boven de leden]",
+            "source": "members",
+            "linkLabel": "[TODO: linktekst]"
+        },
+        {
+            "type": "teaser",
             "background": "tinted",
+            "heading": "[TODO: kop boven de projecten]",
+            "source": "projects",
+            "linkLabel": "[TODO: linktekst]"
+        },
+        {
+            "type": "cta",
+            "background": "light",
             "heading": "[TODO: afsluitende kop]",
             "text": "[TODO: uitnodiging om contact op te nemen]",
             "buttonLabel": "[TODO: knoptekst]"

@@ -1,7 +1,9 @@
 {
     "_todo": [
         "Alle teksten op deze pagina zijn plaatsvervangers. Gebruik alleen feiten die de klant heeft aangeleverd en die in CLAUDE.md §2 als bevestigd staan.",
-        "[TODO: meta.title en meta.description — uniek per pagina (CLAUDE.md §12).]"
+        "[TODO: meta.title en meta.description — uniek per pagina (CLAUDE.md §12).]",
+        "[TODO: de leden — naam, portretfoto en, als ze die hebben, een link naar hun eigen site. Alleen foto's die de klant mag gebruiken (CLAUDE.md §2).]",
+        "De volgorde van de leden is ook de volgorde op de site. De eerste vier staan daarnaast in de vooruitblik op de homepage."
     ],
     "meta": {
         "title": "[TODO: paginatitel over ons]",
@@ -21,42 +23,72 @@
             "actions": []
         },
         {
-            "type": "prose",
-            "background": "light",
-            "heading": "[TODO: kop]",
-            "text": "[TODO: tekst over het collectief]",
-            "image": null,
-            "imageAlt": "",
-            "imagePosition": "right"
-        },
-        {
-            "type": "quote",
+            "type": "members",
             "background": "tinted",
-            "text": "[TODO: citaat]",
-            "supportingText": "[TODO: korte toelichting]",
-            "images": [],
-            "imagePosition": "right"
-        },
-        {
-            "type": "list",
-            "background": "light",
-            "heading": "[TODO: kop boven de tijdlijn]",
-            "intro": "[TODO: korte intro]",
-            "variant": "timeline",
-            "items": [
+            "heading": "[TODO: kop boven de leden]",
+            "intro": "[TODO: korte intro, of leeg laten]",
+            "members": [
                 {
-                    "title": "[TODO: jaartal of moment 1]",
-                    "text": "[TODO: tekst]"
+                    "name": "[TODO: naam lid 1]",
+                    "specialty": "[TODO: specialisme, of leeg laten]",
+                    "website": "",
+                    "image": null,
+                    "imageAlt": ""
                 },
                 {
-                    "title": "[TODO: jaartal of moment 2]",
-                    "text": "[TODO: tekst]"
+                    "name": "[TODO: naam lid 2]",
+                    "specialty": "[TODO: specialisme, of leeg laten]",
+                    "website": "",
+                    "image": null,
+                    "imageAlt": ""
+                },
+                {
+                    "name": "[TODO: naam lid 3]",
+                    "specialty": "[TODO: specialisme, of leeg laten]",
+                    "website": "",
+                    "image": null,
+                    "imageAlt": ""
+                },
+                {
+                    "name": "[TODO: naam lid 4]",
+                    "specialty": "[TODO: specialisme, of leeg laten]",
+                    "website": "",
+                    "image": null,
+                    "imageAlt": ""
+                },
+                {
+                    "name": "[TODO: naam lid 5]",
+                    "specialty": "[TODO: specialisme, of leeg laten]",
+                    "website": "",
+                    "image": null,
+                    "imageAlt": ""
+                },
+                {
+                    "name": "[TODO: naam lid 6]",
+                    "specialty": "[TODO: specialisme, of leeg laten]",
+                    "website": "",
+                    "image": null,
+                    "imageAlt": ""
+                },
+                {
+                    "name": "[TODO: naam lid 7]",
+                    "specialty": "[TODO: specialisme, of leeg laten]",
+                    "website": "",
+                    "image": null,
+                    "imageAlt": ""
+                },
+                {
+                    "name": "[TODO: naam lid 8]",
+                    "specialty": "[TODO: specialisme, of leeg laten]",
+                    "website": "",
+                    "image": null,
+                    "imageAlt": ""
                 }
             ]
         },
         {
             "type": "cta",
-            "background": "tinted",
+            "background": "light",
             "heading": "[TODO: afsluitende kop]",
             "text": "[TODO: uitnodiging om contact op te nemen]",
             "buttonLabel": "[TODO: knoptekst]"

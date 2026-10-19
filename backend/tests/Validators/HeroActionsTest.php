@@ -90,7 +90,7 @@ final class HeroActionsTest extends TestCase
     {
         $targets = FieldValidator::choices()['target'];
 
-        self::assertSame(['home', 'over-ons', 'contact'], $targets);
+        self::assertSame(['home', 'over-ons', 'projecten', 'contact'], $targets);
 
         foreach ($targets as $target) {
             $result = $this->validator->validate(self::heroWith([

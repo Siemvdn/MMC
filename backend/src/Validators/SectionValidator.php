@@ -70,10 +70,35 @@ final class SectionValidator
             'text' => FieldValidator::TYPE_STRING,
             'buttonLabel' => FieldValidator::TYPE_STRING,
         ],
+        // De leden van het collectief, elk met foto, naam en eventueel een
+        // eigen site.
+        'members' => [
+            'background' => FieldValidator::TYPE_CHOICE,
+            'heading' => FieldValidator::TYPE_STRING,
+            'intro' => FieldValidator::TYPE_STRING,
+            'members' => EntryListValidator::TYPE_MEMBERS,
+        ],
+        // De projecten; het eerste wordt groot getoond als uitgelicht project.
+        'projects' => [
+            'background' => FieldValidator::TYPE_CHOICE,
+            'heading' => FieldValidator::TYPE_STRING,
+            'intro' => FieldValidator::TYPE_STRING,
+            'projects' => EntryListValidator::TYPE_PROJECTS,
+        ],
+        // Een vooruitblik op de leden of de projecten, bijvoorbeeld op Home.
+        // Bevat zelf geen items maar verwijst naar de pagina waar ze staan.
+        'teaser' => [
+            'background' => FieldValidator::TYPE_CHOICE,
+            'heading' => FieldValidator::TYPE_STRING,
+            'source' => FieldValidator::TYPE_CHOICE,
+            'linkLabel' => FieldValidator::TYPE_STRING,
+        ],
     ];
 
-    public function __construct(private readonly FieldValidator $fields = new FieldValidator())
-    {
+    public function __construct(
+        private readonly FieldValidator $fields = new FieldValidator(),
+        private readonly EntryListValidator $entries = new EntryListValidator(),
+    ) {
     }
 
     public function validate(mixed $section, int $index): ValidationResult
@@ -111,12 +136,26 @@ final class SectionValidator
                 continue;
             }
 
-            $result->absorb($this->fields->check($section[$field], $expectedType, $field, $where));
+            $result->absorb($this->checkField($section[$field], $expectedType, $field, $where));
         }
 
         $this->checkAlternativeText($section, $where, $result);
 
         return $result;
+    }
+
+    /** Een lijst leden of projecten gaat naar EntryListValidator, de rest naar FieldValidator. */
+    private function checkField(
+        mixed $value,
+        string $expectedType,
+        string $field,
+        string $where,
+    ): ValidationResult {
+        if (EntryListValidator::handles($expectedType)) {
+            return $this->entries->check($value, $expectedType, $where);
+        }
+
+        return $this->fields->check($value, $expectedType, $field, $where);
     }
 
     /**
