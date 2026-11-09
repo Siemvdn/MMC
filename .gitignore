@@ -5,6 +5,8 @@ vendor/
 # Build-uitvoer.
 dist/
 build/
+# De uploadklare map van `npm run deploy:prepare` (CLAUDE.md §18).
+deploy/
 *.tsbuildinfo
 
 # Geheimen. Nooit in Git, ook niet één keer "even snel" (CLAUDE.md §11, §20).

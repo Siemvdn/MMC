@@ -47,15 +47,16 @@ merkbaar — en het scheelt een dependency (§3, §4).
 
 ## Commando's
 
-| Commando            | Doet                                                                                          |
-| ------------------- | --------------------------------------------------------------------------------------------- |
-| `npm run dev`       | dev-server op http://localhost:5173, met `/api` doorgestuurd naar de PHP-server op poort 8123 |
-| `npm run build`     | type-check plus productiebundel in `dist/`                                                    |
-| `npm run preview`   | serveert `dist/` lokaal, om de build te controleren vóór deploy                               |
-| `npm run typecheck` | alleen de TypeScript-controle                                                                 |
-| `npm run lint`      | ESLint                                                                                        |
-| `npm run format`    | Prettier over de hele map                                                                     |
-| `npm test`          | Vitest, één keer (`npm run test:watch` blijft meekijken)                                      |
+| Commando                 | Doet                                                                                                                                            |
+| ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| `npm run dev`            | dev-server op http://localhost:5173, met `/api` doorgestuurd naar de PHP-server op poort 8123                                                   |
+| `npm run build`          | type-check plus productiebundel in `dist/`                                                                                                      |
+| `npm run deploy:prepare` | bouwt en zet in `deploy/` (projectroot) alles klaar om naar de webroot te uploaden; `-- --eerste-keer` neemt ook `storage/` mee (CLAUDE.md §18) |
+| `npm run preview`        | serveert `dist/` lokaal, om de build te controleren vóór deploy                                                                                 |
+| `npm run typecheck`      | alleen de TypeScript-controle                                                                                                                   |
+| `npm run lint`           | ESLint                                                                                                                                          |
+| `npm run format`         | Prettier over de hele map                                                                                                                       |
+| `npm test`               | Vitest, één keer (`npm run test:watch` blijft meekijken)                                                                                        |
 
 De poort van de backend staat in `vite.config.ts` (`BACKEND_DEV_ORIGIN`).
 

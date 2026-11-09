@@ -107,6 +107,7 @@ project-root/
 │   │   ├── utils/             # pure helper-functies (geen side effects)
 │   │   ├── styles/            # tokens.css (het design), global.css
 │   │   └── main-*.tsx         # één instapscript per HTML-ingang
+│   ├── scripts/            # prepare-deploy.mjs: bouwt de uploadklare map deploy/ (§18)
 │   ├── eslint.config.js
 │   ├── .prettierrc
 │   ├── tsconfig.json
@@ -373,6 +374,7 @@ Relevant omdat er persoonsgegevens verwerkt worden via het contactformulier.
 ## 18. Deployment naar de shared hosting
 
 - SFTP-toegang: [TODO: host, poort en gebruikersnaam van het hostingpakket]. Protocol SFTP, niet FTP. De inloggegevens staan nooit in de repo, in `.env.example` of in dit bestand.
+- **Snelste weg**: `cd frontend && npm run deploy:prepare`. Dat bouwt de frontend en zet in `deploy/` (projectroot, staat in `.gitignore`) alles klaar in precies de vorm van de webroot hieronder: de inhoud van `dist/`, `backend/public/` als `api/`, en `src/`. Sleep in FileZilla de **inhoud** van `deploy/` naar de webroot en kies *Overschrijven*. `storage/` zit er bij een update bewust niet in (zie "Content niet blind overschrijven"); alleen `npm run deploy:prepare -- --eerste-keer` neemt de contentbestanden en lege runtime-mappen mee. `.env`, tests, `tools/`, lokale sessies, logs en lokale uploads gaan nooit mee. Wat het script doet, staat in `frontend/scripts/prepare-deploy.mjs`; de punten hieronder blijven gelden als je met de hand uploadt.
 - Frontend: `npm run build` → upload de **inhoud** van `dist/` naar de webroot.
   `index.html` hoort in de root van het gepubliceerde pad.
 - Backend: `backend/public/` wordt op de server een map die letterlijk **`api`**
