@@ -113,6 +113,16 @@
 # Geen mapinhoud tonen als er geen indexbestand is (CLAUDE.md §11).
 Options -Indexes
 
+# Verborgen bestanden zoals .env nooit uitleveren (CLAUDE.md §11).
+#
+# De .env staat op de server in deze map, naast api/ (§18): index.php zoekt
+# hem één map boven zichzelf. Zonder deze regel kan iedereen hem via
+# /.env downloaden, inclusief APP_SECRET en de hash van het beheerwachtwoord.
+# Een standaard-Apache weigert alleen .ht-bestanden, dus dit moet expliciet.
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>
+
 # Een onbekend adres toont de eigen pagina, mét statuscode 404 (CLAUDE.md §21).
 # Een 404-pagina met statuscode 200 zou zoekmachines laten denken dat elk
 # willekeurig adres een echte pagina is.
