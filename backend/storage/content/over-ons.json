@@ -3,7 +3,8 @@
         "Alle teksten op deze pagina zijn plaatsvervangers. Gebruik alleen feiten die de klant heeft aangeleverd en die in CLAUDE.md §2 als bevestigd staan.",
         "[TODO: meta.title en meta.description — uniek per pagina (CLAUDE.md §12).]",
         "[TODO: de leden — naam, portretfoto en, als ze die hebben, een link naar hun eigen site. Alleen foto's die de klant mag gebruiken (CLAUDE.md §2).]",
-        "De volgorde van de leden is ook de volgorde op de site. De eerste vier staan daarnaast in de vooruitblik op de homepage."
+        "De volgorde van de leden is ook de volgorde op de site. De eerste vier staan daarnaast in de vooruitblik op de homepage.",
+        "[TODO: per lid eventueel een korte omschrijving (hoogstens 160 tekens), telefoonnummer en e-mailadres. Alleen met toestemming van dat lid: het zijn persoonsgegevens (AVG). Leeg laten betekent: niet tonen.]"
     ],
     "meta": {
         "title": "[TODO: paginatitel over ons]",
@@ -31,6 +32,9 @@
                 {
                     "name": "[TODO: naam lid 1]",
                     "specialty": "[TODO: specialisme, of leeg laten]",
+                    "bio": "[TODO: korte omschrijving, of leeg laten]",
+                    "phone": "",
+                    "email": "",
                     "website": "",
                     "image": null,
                     "imageAlt": ""
@@ -38,6 +42,9 @@
                 {
                     "name": "[TODO: naam lid 2]",
                     "specialty": "[TODO: specialisme, of leeg laten]",
+                    "bio": "[TODO: korte omschrijving, of leeg laten]",
+                    "phone": "",
+                    "email": "",
                     "website": "",
                     "image": null,
                     "imageAlt": ""
@@ -45,6 +52,9 @@
                 {
                     "name": "[TODO: naam lid 3]",
                     "specialty": "[TODO: specialisme, of leeg laten]",
+                    "bio": "[TODO: korte omschrijving, of leeg laten]",
+                    "phone": "",
+                    "email": "",
                     "website": "",
                     "image": null,
                     "imageAlt": ""
@@ -52,6 +62,9 @@
                 {
                     "name": "[TODO: naam lid 4]",
                     "specialty": "[TODO: specialisme, of leeg laten]",
+                    "bio": "[TODO: korte omschrijving, of leeg laten]",
+                    "phone": "",
+                    "email": "",
                     "website": "",
                     "image": null,
                     "imageAlt": ""
@@ -59,6 +72,9 @@
                 {
                     "name": "[TODO: naam lid 5]",
                     "specialty": "[TODO: specialisme, of leeg laten]",
+                    "bio": "[TODO: korte omschrijving, of leeg laten]",
+                    "phone": "",
+                    "email": "",
                     "website": "",
                     "image": null,
                     "imageAlt": ""
@@ -66,6 +82,9 @@
                 {
                     "name": "[TODO: naam lid 6]",
                     "specialty": "[TODO: specialisme, of leeg laten]",
+                    "bio": "[TODO: korte omschrijving, of leeg laten]",
+                    "phone": "",
+                    "email": "",
                     "website": "",
                     "image": null,
                     "imageAlt": ""
@@ -73,6 +92,9 @@
                 {
                     "name": "[TODO: naam lid 7]",
                     "specialty": "[TODO: specialisme, of leeg laten]",
+                    "bio": "[TODO: korte omschrijving, of leeg laten]",
+                    "phone": "",
+                    "email": "",
                     "website": "",
                     "image": null,
                     "imageAlt": ""
@@ -80,6 +102,9 @@
                 {
                     "name": "[TODO: naam lid 8]",
                     "specialty": "[TODO: specialisme, of leeg laten]",
+                    "bio": "[TODO: korte omschrijving, of leeg laten]",
+                    "phone": "",
+                    "email": "",
                     "website": "",
                     "image": null,
                     "imageAlt": ""

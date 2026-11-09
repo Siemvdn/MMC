@@ -26,13 +26,14 @@ export function MemberList({
           <TextBlock text={section.intro} className={styles.intro} />
         </div>
 
-        <ul className={`${styles.grid} ${styles.gridMembers}`}>
+        <ul className={`${styles.grid} ${styles.gridMembersDetailed}`}>
           {section.members.map((member, index) => (
             // Naam plus plek: twee leden met dezelfde naam blijven zo uniek.
             <MemberCard
               key={`${member.name}-${String(index)}`}
               member={member}
               titleTag={titleTag}
+              detailed
             />
           ))}
         </ul>

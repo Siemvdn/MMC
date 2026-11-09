@@ -113,6 +113,12 @@ final class FieldValidator
         // Een lid en een project (EntryListValidator).
         'name' => 100,
         'specialty' => 100,
+        // De omschrijving van een lid staat in een smalle kaart naast andere
+        // leden. Bewust kort, ongeveer twee zinnen: een langere tekst maakt
+        // die ene kaart veel hoger dan de rest van de rij.
+        'bio' => 160,
+        'phone' => 20,
+        'email' => 100,
         'website' => 200,
         'maker' => 100,
         'category' => 60,

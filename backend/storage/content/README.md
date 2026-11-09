@@ -179,9 +179,23 @@ Elk lid in `members` (hoogstens 40):
 |---|---|---|
 | `name` | string | Verplicht, niet leeg |
 | `specialty` | string | Mag leeg; dan valt die regel weg |
+| `bio` | string | Korte omschrijving, hoogstens 160 tekens. Mag leeg |
+| `phone` | string | Mag leeg. Gevuld: cijfers, spaties, haakjes, streepjes en een `+` vooraan; 6 tot 15 cijfers |
+| `email` | string | Mag leeg. Gevuld: een geldig e-mailadres |
 | `website` | string | Leeg = geen link. Gevuld: een volledig adres dat begint met `https://` of `http://` |
 | `image` | string of `null` | Portretfoto, pad onder `/uploads/` |
 | `imageAlt` | string | Verplicht zodra `image` gevuld is (§14) |
+
+`bio`, `phone` en `email` kwamen er later bij en mogen in een bestand ook
+helemaal ontbreken; dat telt als leeg. Zo blijft content die al op de server
+stond geldig zonder nieuwe upload. De omschrijving is bewust kort: de leden
+staan in een raster naast elkaar, en een lange tekst maakt die ene kaart veel
+hoger dan de rest van de rij.
+
+Telefoon en e-mail van een lid zijn persoonsgegevens: alleen invullen met
+toestemming van dat lid (AVG). Op de site worden het een `tel:`- en
+`mailto:`-link; de vooruitblik op de homepage toont ze niet, net als de
+omschrijving.
 
 Het webadres is het enige vrij in te vullen adres in de content. Daarom
 alleen `http`/`https`: een `javascript:`-adres in een link is een XSS-lek

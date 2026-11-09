@@ -83,6 +83,40 @@ describe('de leden', () => {
     expect(container.querySelector('h2')?.textContent).toBe('Onze leden');
     expect(container.querySelector('h3')?.textContent).toBe('Een lid');
   });
+
+  it('toont de omschrijving, en telefoon en e-mail als link met de naam erbij', () => {
+    render(
+      <PageSections
+        sections={[
+          membersSection([
+            member({
+              bio: 'Maakt kasten van massief eiken.',
+              phone: '+31 (0)6 12 34 56 78',
+              email: 'lid@voorbeeld.nl',
+            }),
+          ]),
+        ]}
+      />,
+    );
+
+    expect(screen.getByText('Maakt kasten van massief eiken.')).not.toBeNull();
+    expect(screen.getByRole('link', { name: /bel een lid/i }).getAttribute('href')).toBe(
+      'tel:+31612345678',
+    );
+    expect(screen.getByRole('link', { name: /mail een lid/i }).getAttribute('href')).toBe(
+      'mailto:lid@voorbeeld.nl',
+    );
+  });
+
+  it('laat lege of ontbrekende contactgegevens weg', () => {
+    const { container } = render(
+      <PageSections sections={[membersSection([member({ bio: '', phone: '' })])]} />,
+    );
+
+    expect(screen.queryByRole('link')).toBeNull();
+    // Alleen het lid zelf: geen lege contactlijst eronder.
+    expect(container.querySelectorAll('li')).toHaveLength(1);
+  });
 });
 
 describe('de projecten', () => {
@@ -164,6 +198,24 @@ describe('de vooruitblik', () => {
     expect(screen.getByRole('link', { name: /alle leden/i }).getAttribute('href')).toBe(
       '/over-ons',
     );
+  });
+
+  it('blijft compact: geen omschrijving of contactgegevens op de homepage', async () => {
+    const withDetails = member({
+      name: 'Een',
+      bio: 'Een omschrijving.',
+      phone: '0612345678',
+      email: 'lid@voorbeeld.nl',
+      website: 'https://voorbeeld.nl',
+    });
+    fetchMock.mockResolvedValue(pageWith([membersSection([withDetails])]));
+
+    render(<PageSections sections={[teaser('members')]} firstHeadingLevel={2} />);
+
+    expect(await screen.findByText('Een')).not.toBeNull();
+    expect(screen.queryByText('Een omschrijving.')).toBeNull();
+    // Alleen de link naar de hele pagina, geen bel-, mail- of websitelink.
+    expect(screen.getAllByRole('link')).toHaveLength(1);
   });
 
   it('toont de eerste drie projecten van de Projecten-pagina', async () => {

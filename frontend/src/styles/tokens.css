@@ -232,11 +232,18 @@
      dan projectfoto's, dus passen er meer naast elkaar. */
   --card-min-member: 220px;
   --card-min-project: 300px;
+  /* De breedte van een portret naast de tekst, op een telefoon. */
+  --card-photo-mobile: 112px;
   /* Onder deze breedte wikkelen de kolommen van de voettekst onder elkaar. */
   --footer-column-min: 200px;
 
   /* Het kleinste aanraakvlak voor een link of knop (WCAG 2.5.8, §14). */
   --touch-target: 44px;
+  /*
+   * Voor links die dicht op elkaar staan, zoals de contactregels van een lid.
+   * WCAG 2.5.8 vraagt minstens 24px; dit geeft er ruim marge op.
+   */
+  --touch-target-compact: 32px;
   /* De hoogte van de grote knoppen in de kop en het afsluitende blok. */
   --control-height-large: 52px;
 

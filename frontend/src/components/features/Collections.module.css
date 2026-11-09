@@ -140,6 +140,23 @@
   }
 }
 
+/*
+ * De leden op de Over ons-pagina, met omschrijving en contactgegevens. Op een
+ * breed scherm hetzelfde raster; op een telefoon één lid per rij, omdat twee
+ * kaarten naast elkaar dan te krap worden (zie MemberCard.module.css). Staat
+ * ná de regel hierboven, zodat deze bij gelijke specificiteit wint.
+ */
+.gridMembersDetailed {
+  composes: gridMembers;
+}
+
+@media (max-width: 640px) {
+  .gridMembersDetailed {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-8);
+  }
+}
+
 /* ── Uitgelicht project ───────────────────────────────────────────────── */
 
 .featured {

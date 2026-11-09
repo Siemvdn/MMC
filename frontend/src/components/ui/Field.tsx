@@ -1,6 +1,6 @@
 import styles from './Field.module.css';
 
-export type FieldType = 'text' | 'email' | 'date' | 'number' | 'password';
+export type FieldType = 'text' | 'email' | 'tel' | 'date' | 'number' | 'password';
 
 export interface FieldProps {
   /** Moet uniek zijn op de pagina; gebruik `useId()` als basis. */

@@ -1,0 +1,67 @@
+/*
+ * De uitgebreide ledenkaart op de Over ons-pagina: omschrijving en
+ * contactgegevens onder naam en specialisme. De gewone kaartopmaak staat in
+ * Collections.module.css.
+ */
+
+.bio {
+  margin: var(--space-2) 0 0;
+  color: var(--color-text-prose);
+  font-size: var(--font-size-meta);
+  line-height: var(--line-height-body);
+}
+
+.contact {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  margin: var(--space-3) 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--font-size-meta);
+}
+
+.contactLine {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--touch-target-compact);
+  color: var(--color-kicker);
+}
+
+/*
+ * `anywhere`: een lang e-mailadres heeft geen spaties om op af te breken,
+ * en zou anders de smalle kaart uit zijn kolom duwen.
+ */
+.contactLink {
+  min-width: 0;
+  color: var(--color-link-accent);
+  overflow-wrap: anywhere;
+}
+
+.contactLink:hover {
+  color: var(--color-link-accent-hover);
+}
+
+/*
+ * Op een telefoon één lid per rij, met een kleine foto naast de tekst. Twee
+ * kaarten naast elkaar zijn met een omschrijving en drie contactregels te
+ * krap. `li.detailed` in plaats van alleen de klasse: zo wint deze regel van
+ * de gewone kaartopmaak, welk bestand er ook als laatste geladen wordt.
+ */
+@media (max-width: 640px) {
+  li.detailed {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  li.detailed > :first-child {
+    flex: 0 0 auto;
+    width: var(--card-photo-mobile);
+  }
+
+  li.detailed > :last-child {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+}

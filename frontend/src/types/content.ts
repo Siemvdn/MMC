@@ -150,6 +150,14 @@ export interface Member {
   name: string;
   /** Mag leeg; dan valt die regel op de site weg. */
   specialty: string;
+  /*
+   * Omschrijving, telefoon en e-mail kwamen er later bij. In content die al
+   * op de server stond ontbreken ze, en dat telt als leeg — vandaar optioneel.
+   */
+  /** Korte omschrijving, hoogstens 160 tekens. */
+  bio?: string;
+  phone?: string;
+  email?: string;
   /**
    * De eigen site van het lid; leeg betekent geen link. De server laat alleen
    * http(s) door, en de frontend controleert dat nog een keer voordat hij er

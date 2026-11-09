@@ -7,7 +7,7 @@ export type ContactFormErrors = Partial<Record<keyof ContactFormData, string>>;
  * patroon toch niet. Deze controle vangt vergissingen af; of het adres écht
  * bestaat blijkt pas als er een antwoord op komt.
  */
-const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+export const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 /**
  * Controleert het aanvraagformulier en geeft per veld een foutmelding terug.

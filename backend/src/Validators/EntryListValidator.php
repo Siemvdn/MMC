@@ -22,10 +22,20 @@ final class EntryListValidator
      * Per soort lijst: hoeveel items er hoogstens in mogen, welke tekstvelden
      * niet leeg mogen zijn, en welke leeg mogen blijven.
      *
+     * `addedLater` zijn velden die er pas later bij kwamen. Die mogen ook
+     * helemaal ontbreken: content die al op de server staat, blijft zo geldig
+     * zonder dat iemand hem opnieuw hoeft te uploaden (CLAUDE.md §18, §20).
+     *
      * De bovengrenzen zijn ruim gekozen voor een collectief, maar houden een
      * plakfout in het beheer tegen voordat die het contentbestand opblaast.
      *
-     * @var array<string, array{label: string, max: int, required: list<string>, optional: list<string>}>
+     * @var array<string, array{
+     *     label: string,
+     *     max: int,
+     *     required: list<string>,
+     *     optional: list<string>,
+     *     addedLater: list<string>,
+     * }>
      */
     private const LISTS = [
         self::TYPE_MEMBERS => [
@@ -33,27 +43,24 @@ final class EntryListValidator
             'max' => 40,
             'required' => ['name'],
             'optional' => ['specialty', 'website'],
+            'addedLater' => ['bio', 'phone', 'email'],
         ],
         self::TYPE_PROJECTS => [
             'label' => 'project',
             'max' => 30,
             'required' => ['title'],
             'optional' => ['maker', 'category', 'description'],
+            'addedLater' => [],
         ],
     ];
 
     /** Elk item heeft een foto, die net als bij een sectie leeg mag zijn. */
     private const IMAGE_FIELDS = ['image', 'imageAlt'];
 
-    /**
-     * Een eigen site van een lid is het enige vrij in te vullen adres in de
-     * content. Alleen deze twee schema's mogen: een `javascript:`-adres in een
-     * link is een XSS-lek (CLAUDE.md §11).
-     */
-    private const WEBSITE_SCHEMES = ['http', 'https'];
-
-    public function __construct(private readonly FieldValidator $fields = new FieldValidator())
-    {
+    public function __construct(
+        private readonly FieldValidator $fields = new FieldValidator(),
+        private readonly MemberContactValidator $contact = new MemberContactValidator(),
+    ) {
     }
 
     public static function handles(string $expectedType): bool
@@ -96,7 +103,13 @@ final class EntryListValidator
     }
 
     /**
-     * @param array{label: string, max: int, required: list<string>, optional: list<string>} $list
+     * @param array{
+     *     label: string,
+     *     max: int,
+     *     required: list<string>,
+     *     optional: list<string>,
+     *     addedLater: list<string>,
+     * } $list
      */
     private function checkEntry(mixed $entry, array $list, string $where): ValidationResult
     {
@@ -110,11 +123,18 @@ final class EntryListValidator
 
         $textFields = [...$list['required'], ...$list['optional']];
 
-        $this->checkForUnknownKeys($entry, [...$textFields, ...self::IMAGE_FIELDS], $where, $result);
+        $this->checkForUnknownKeys(
+            $entry,
+            [...$textFields, ...$list['addedLater'], ...self::IMAGE_FIELDS],
+            $where,
+            $result,
+        );
 
-        foreach ($textFields as $field) {
+        foreach ([...$textFields, ...$list['addedLater']] as $field) {
             if (!array_key_exists($field, $entry)) {
-                $result->add(sprintf('%s: veld %s ontbreekt.', $where, $field));
+                if (!in_array($field, $list['addedLater'], true)) {
+                    $result->add(sprintf('%s: veld %s ontbreekt.', $where, $field));
+                }
 
                 continue;
             }
@@ -130,7 +150,7 @@ final class EntryListValidator
             }
         }
 
-        $this->checkWebsite($entry['website'] ?? null, $where, $result);
+        $this->contact->check($entry, $where, $result);
         $this->checkImage($entry, $where, $result);
 
         return $result;
@@ -155,26 +175,6 @@ final class EntryListValidator
             }
 
             $result->add(sprintf('%s: onbekend veld %s.', $where, (string) $key));
-        }
-    }
-
-    /** Leeg betekent: geen eigen site. Gevuld moet het een volledig webadres zijn. */
-    private function checkWebsite(mixed $website, string $where, ValidationResult $result): void
-    {
-        if (!is_string($website) || $website === '') {
-            return;
-        }
-
-        $scheme = strtolower((string) parse_url($website, PHP_URL_SCHEME));
-
-        if (
-            filter_var($website, FILTER_VALIDATE_URL) === false
-            || !in_array($scheme, self::WEBSITE_SCHEMES, true)
-        ) {
-            $result->add(sprintf(
-                '%s: het webadres moet volledig zijn en beginnen met https:// (of http://).',
-                $where,
-            ));
         }
     }
 

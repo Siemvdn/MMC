@@ -4,7 +4,8 @@ import { Choice } from '../../components/ui/Choice';
 import { Field } from '../../components/ui/Field';
 import { useImageUpload } from '../../hooks/useImageUpload';
 import { ImageField } from './ImageField';
-import { MembersFields, ProjectsFields, TeaserFields } from './CollectionFields';
+import { ProjectsFields, TeaserFields } from './CollectionFields';
+import { MembersFields } from './MembersFields';
 import type { AdminSection } from '../../types/adminContent';
 import type { PageSlug } from '../../constants/routes';
 import type {

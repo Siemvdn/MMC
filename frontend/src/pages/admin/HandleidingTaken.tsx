@@ -102,6 +102,13 @@ export function ManualTasks() {
           homepage, en het bovenste project staat groot als uitgelicht project. Een eigen website
           van een lid vult u volledig in, beginnend met <strong>https://</strong>.
         </p>
+        <p>
+          Bij elk lid kunt u ook een <strong>korte omschrijving</strong>, een{' '}
+          <strong>telefoonnummer</strong> en een <strong>e-mailadres</strong> invullen. Houd de
+          omschrijving bij één of twee zinnen: de teller onder het vak laat zien hoeveel ruimte er
+          nog is. Een telefoonnummer en e-mailadres vult u alleen in als het lid dat goedvindt. Wat
+          u leeg laat, verschijnt niet op de site.
+        </p>
 
         <h3>Weghalen</h3>
         <p>

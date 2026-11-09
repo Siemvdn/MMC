@@ -111,6 +111,81 @@ final class MembersSectionTest extends TestCase
         self::assertStringContainsString('naam', $result->asText());
     }
 
+    public function testAcceptsABioPhoneAndEmail(): void
+    {
+        $member = self::member([
+            'bio' => 'Maakt meubels van massief eiken.',
+            'phone' => '+31 (0)6 12 34 56 78',
+            'email' => 'lid@voorbeeld.nl',
+        ]);
+
+        $result = $this->validator->validate(self::section([$member]), 0);
+
+        self::assertTrue($result->isValid(), $result->asText());
+    }
+
+    /**
+     * Omschrijving, telefoon en e-mail kwamen er later bij. Content die al op
+     * de server stond zonder die velden, moet geldig blijven.
+     */
+    public function testAcceptsAMemberSavedBeforeBioPhoneAndEmailExisted(): void
+    {
+        $member = self::member();
+
+        self::assertArrayNotHasKey('bio', $member);
+        self::assertTrue($this->validator->validate(self::section([$member]), 0)->isValid());
+    }
+
+    public function testRejectsABioLongerThanTwoShortSentences(): void
+    {
+        $result = $this->validator->validate(self::section([self::member(['bio' => str_repeat('a', 161)])]), 0);
+
+        self::assertFalse($result->isValid());
+        self::assertStringContainsString('bio', $result->asText());
+    }
+
+    public function testRejectsABioThatIsNotText(): void
+    {
+        self::assertFalse($this->validator->validate(self::section([self::member(['bio' => 5])]), 0)->isValid());
+    }
+
+    public function testAcceptsCommonPhoneNotations(): void
+    {
+        foreach (['06-12345678', '030 123 4567', '+31 (0)30 123 45 67'] as $phone) {
+            $result = $this->validator->validate(self::section([self::member(['phone' => $phone])]), 0);
+
+            self::assertTrue($result->isValid(), $phone . ': ' . $result->asText());
+        }
+    }
+
+    /** @return iterable<string, array{string}> */
+    public static function invalidPhoneNumbers(): iterable
+    {
+        yield 'letters' => ['bel me even'];
+        yield 'te kort' => ['12345'];
+        yield 'te veel cijfers' => ['0612345678901234'];
+        yield 'link' => ['tel:0612345678'];
+    }
+
+    #[DataProvider('invalidPhoneNumbers')]
+    public function testRejectsInvalidPhoneNumbers(string $phone): void
+    {
+        $result = $this->validator->validate(self::section([self::member(['phone' => $phone])]), 0);
+
+        self::assertFalse($result->isValid());
+        self::assertStringContainsString('telefoonnummer', $result->asText());
+    }
+
+    public function testRejectsAnInvalidEmail(): void
+    {
+        foreach (['lid@', 'geen e-mail', 'mailto:lid@voorbeeld.nl'] as $email) {
+            $result = $this->validator->validate(self::section([self::member(['email' => $email])]), 0);
+
+            self::assertFalse($result->isValid(), $email);
+            self::assertStringContainsString('e-mailadres', $result->asText());
+        }
+    }
+
     public function testRejectsMoreThanFortyMembers(): void
     {
         $members = array_fill(0, 41, self::member());

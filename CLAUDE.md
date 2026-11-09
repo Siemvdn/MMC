@@ -36,6 +36,7 @@ Markeer elk feit als ✅ **Bevestigd** of ⏳ **Nog niet bevestigd — niet gebr
 
 ### Achtergrond ("Over ons")
 - ✅ **Bevestigd** — De Over ons-pagina toont alle leden: foto, naam en, als een lid die heeft, een link naar de eigen website. (Doorgegeven door de ontwikkelaar, 19 oktober 2026.)
+- ✅ **Bevestigd** — Per lid komen er ook een telefoonnummer, een e-mailadres en een korte omschrijving bij. De omschrijving moet kort blijven, zodat de kaarten er netjes uitzien; de grens is 160 tekens. (Doorgegeven door de ontwikkelaar, 9 november 2026.)
 - [TODO: bevestigde feiten over het collectief en de makers.]
 - Schrijf de tekst voorlopig kort en feitelijk, uitsluitend gebaseerd op bevestigde punten. Geen persoonlijke details of anekdotes verzinnen die niet expliciet zijn aangeleverd — die komen er later bij als de klant zelf via de CMS aanvult of corrigeert.
 

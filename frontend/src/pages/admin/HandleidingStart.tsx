@@ -113,7 +113,10 @@ export function ManualStart() {
         <PartsTable
           rows={[
             ['1. Kop van de pagina', TODO_BLOCK],
-            ['2. Leden', 'Alle leden, elk met foto, naam en eventueel een eigen website'],
+            [
+              '2. Leden',
+              'Alle leden, elk met foto en naam, en eventueel een korte omschrijving, telefoon, e-mail en eigen website',
+            ],
             ['3. Blok met knop', TODO_BLOCK],
           ]}
         />
